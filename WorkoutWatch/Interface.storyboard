@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="9058" systemVersion="15A284" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="mad-Ul-nzl">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9048"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="9019"/>
+    </dependencies>
+    <scenes>
+        <!--Home Controller-->
+        <scene sceneID="2nh-eB-gyd">
+            <objects>
+                <controller id="mad-Ul-nzl" customClass="HomeController" customModule="FocusMotionTesting_WatchKit_Extension">
+                    <items>
+                        <button width="1" alignment="left" title="Start Workout" id="M04-ms-iG7">
+                            <connections>
+                                <action selector="startWorkout" destination="mad-Ul-nzl" id="7ez-kq-8I5"/>
+                            </connections>
+                        </button>
+                        <button width="1" alignment="left" title="View Workouts" id="6Dh-Nc-gHh">
+                            <connections>
+                                <action selector="viewWorkouts" destination="mad-Ul-nzl" id="9TE-Cw-eFi"/>
+                                <segue destination="AgC-eL-Hgc" kind="push" id="s0X-fI-ut4"/>
+                            </connections>
+                        </button>
+                    </items>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="541" y="186"/>
+        </scene>
+        <!--Workout Controller-->
+        <scene sceneID="3ht-yg-vQd">
+            <objects>
+                <controller id="MuV-o9-lqz" customClass="WorkoutController" customModule="FocusMotionTesting_WatchKit_Extension">
+                    <items>
+                        <label alignment="center" text="Sessions" id="8Ya-0G-Gf2"/>
+                        <group width="1" alignment="left" id="quI-fy-z33">
+                            <items>
+                                <table alignment="left" id="qcw-T5-0ub">
+                                    <items>
+                                        <tableRow identifier="WorkoutRow" id="iAg-X4-2d5" customClass="WorkoutRow" customModule="FocusMotionTesting_WatchKit_Extension">
+                                            <group key="rootItem" width="1" height="0.0" alignment="left" layout="vertical" id="3Zh-ln-WaS">
+                                                <items>
+                                                    <label alignment="left" text="Label" id="cis-2d-nuw"/>
+                                                    <dateLabel alignment="left" id="GNr-T7-SYJ">
+                                                        <dateFormatterStyle key="dateStyle" short="YES"/>
+                                                        <dateFormatterStyle key="timeStyle" short="YES"/>
+                                                    </dateLabel>
+                                                </items>
+                                            </group>
+                                            <connections>
+                                                <outlet property="dateObject" destination="GNr-T7-SYJ" id="PGh-HL-esA"/>
+                                                <outlet property="textLabel" destination="cis-2d-nuw" id="6f9-NH-3DL"/>
+                                            </connections>
+                                        </tableRow>
+                                    </items>
+                                </table>
+                            </items>
+                        </group>
+                    </items>
+                    <connections>
+                        <outlet property="workoutTable" destination="qcw-T5-0ub" id="odc-lR-zSG"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="752" y="186"/>
+        </scene>
+        <!--Interface Controller-->
+        <scene sceneID="aou-V4-d1y">
+            <objects>
+                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="WorkoutWatch" customModuleProvider="target">
+                    <items>
+                        <label height="20" alignment="center" text="Label" id="dCc-1w-GEG"/>
+                        <label alignment="left" text="Label" id="TSD-nS-lwI"/>
+                        <label alignment="left" text="Label" id="pxr-AU-Ngq"/>
+                        <label alignment="left" text="Label" id="LYt-5j-sZA"/>
+                    </items>
+                    <connections>
+                        <outlet property="magLabel" destination="LYt-5j-sZA" id="yfX-2q-qxC"/>
+                        <outlet property="xLabel" destination="dCc-1w-GEG" id="orh-NB-kxa"/>
+                        <outlet property="yLabel" destination="TSD-nS-lwI" id="okR-GU-xyS"/>
+                        <outlet property="zLabel" destination="pxr-AU-Ngq" id="ijb-fT-ThS"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="541" y="447"/>
+        </scene>
+    </scenes>
+</document>

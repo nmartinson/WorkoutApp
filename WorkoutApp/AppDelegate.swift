@@ -9,15 +9,66 @@
 import UIKit
 import CoreData
 
+
+extension NSDate
+{
+    convenience
+    init(dateString:String) {
+        let dateStringFormatter = NSDateFormatter()
+        dateStringFormatter.dateFormat = "yyyy-MM-dd"
+        dateStringFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+        let d = dateStringFormatter.dateFromString(dateString)!
+        self.init(timeInterval:0, sinceDate:d)
+    }
+}
+
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, FmDeviceDelegate {
 
     var window: UIWindow?
-
-
+    var m_device:FmDevice?
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        var config = FmConfig()
+        FmConfigInit(&config)
+        if !FmInit(&config, "34DNjw?K0jjhds8rfD4JwhbJXI7PFKCo")
+        {
+            print("NOT INIT")
+        }
+        
+        FmDevice.initializeInstance(self)
+		FmAppleWatchDevice.initializeInstance(nil)
+        
+        
+//        populateWithTestData()
         return true
+    }
+    
+    func dataReceived(device: FmDevice!) {
+        
+    }
+    
+    func connectionFailed(device: FmDevice!, error: NSError!) {
+        
+    }
+    
+    func recordingChanged(device: FmDevice!, recording: Bool) {
+        
+    }
+    
+    func availableChanged(device: FmDevice!, available: Bool) {
+        
+    }
+    
+    func connectedChanged(device: FmDevice!, connected: Bool) {
+        print("Connected to \(device)")
+        if connected{
+            m_device = device
+        } else {
+            m_device = nil
+        }
     }
 
     func applicationWillResignActive(application: UIApplication) {
@@ -107,5 +158,222 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
+    
+    
+    func populateWithTestData()
+    {
+        var overViewSet = Set<String>()
+        let session = NSEntityDescription.insertNewObjectForEntityForName("SessionEntity", inManagedObjectContext: managedObjectContext) as! SessionEntity
+        session.duration = 3600
+        session.date = NSDate(dateString:"2015-09-06")
+	
+        //        session.sets =
+	
+        
+        let set1 = NSEntityDescription.insertNewObjectForEntityForName("SetEntity", inManagedObjectContext: managedObjectContext) as! SetEntity
+        set1.duration = 45
+        set1.internalVariation = 3.5
+        set1.maxRepTime = 5
+        set1.minRepTime = 2
+        set1.meanRepTime = 3
+        set1.movementType = "Push Press"
+        set1.weight = 145
+        set1.repCount = 10
+        set1.date = session.date?.dateByAddingTimeInterval(10)
+        set1.session = session
+        overViewSet.insert(set1.movementType!)
+        set1.session = session
+
+        
+        let set2 = NSEntityDescription.insertNewObjectForEntityForName("SetEntity", inManagedObjectContext: managedObjectContext) as! SetEntity
+        set2.duration = 45
+        set2.internalVariation = 3.5
+        set2.maxRepTime = 5
+        set2.minRepTime = 2
+        set2.meanRepTime = 3
+        set2.movementType = "Push Press"
+        set2.weight = 170
+        set2.repCount = 8
+        set2.date = set1.date?.dateByAddingTimeInterval(45)
+        set2.session = session
+        overViewSet.insert(set2.movementType!)
+        set2.session = session
+
+        
+        let set3 = NSEntityDescription.insertNewObjectForEntityForName("SetEntity", inManagedObjectContext: managedObjectContext) as! SetEntity
+        set3.duration = 45
+        set3.internalVariation = 3.5
+        set3.maxRepTime = 5
+        set3.minRepTime = 2
+        set3.meanRepTime = 3
+        set3.movementType = "Push Press"
+        set3.weight = 200
+        set3.repCount = 6
+        set3.date = set2.date?.dateByAddingTimeInterval(45)
+        set3.session = session
+        overViewSet.insert(set3.movementType!)
+        set3.session = session
+
+        
+        let set11 = NSEntityDescription.insertNewObjectForEntityForName("SetEntity", inManagedObjectContext: managedObjectContext) as! SetEntity
+        set11.duration = 45
+        set11.internalVariation = 3.5
+        set11.maxRepTime = 5
+        set11.minRepTime = 2
+        set11.meanRepTime = 3
+        set11.movementType = "Dumbbell Flies"
+        set11.weight = 30
+        set11.repCount = 8
+        set11.date = set3.date?.dateByAddingTimeInterval(45)
+        set11.session = session
+        overViewSet.insert(set11.movementType!)
+        set11.session = session
+
+        
+        let set12 = NSEntityDescription.insertNewObjectForEntityForName("SetEntity", inManagedObjectContext: managedObjectContext) as! SetEntity
+        set12.duration = 45
+        set12.internalVariation = 3.5
+        set12.maxRepTime = 5
+        set12.minRepTime = 2
+        set12.meanRepTime = 3
+        set12.movementType = "Dumbbell Flies"
+        set12.weight = 35
+        set12.repCount = 8
+        set12.date = set11.date?.dateByAddingTimeInterval(45)
+        set12.session = session
+        overViewSet.insert(set12.movementType!)
+        set12.session = session
+
+        
+        let set13 = NSEntityDescription.insertNewObjectForEntityForName("SetEntity", inManagedObjectContext: managedObjectContext) as! SetEntity
+        set13.duration = 45
+        set13.internalVariation = 3.5
+        set13.maxRepTime = 5
+        set13.minRepTime = 2
+        set13.meanRepTime = 3
+        set13.movementType = "Dumbbell Flies"
+        set13.weight = 40
+        set13.repCount = 6
+        set13.date = set12.date?.dateByAddingTimeInterval(45)
+        set13.session = session
+        overViewSet.insert(set13.movementType!)
+        set13.session = session
+        
+//        let sets = session.mutableSetValueForKey("sets")
+//        sets.addObject(set1)
+//        sets.addObject(set2)
+//        sets.addObject(set3)
+//        sets.addObject(set11)
+//        sets.addObject(set12)
+//        sets.addObject(set13)
+        session.overView = overViewSet.joinWithSeparator(",")
+
+        
+        
+        var overview2 = Set<String>()
+        let session2 = NSEntityDescription.insertNewObjectForEntityForName("SessionEntity", inManagedObjectContext: managedObjectContext) as! SessionEntity
+        session2.duration = 3600
+        session2.date = NSDate(dateString:"2015-09-10")
+        //        session.sets =
+        
+        let set1s = NSEntityDescription.insertNewObjectForEntityForName("SetEntity", inManagedObjectContext: managedObjectContext) as! SetEntity
+        set1s.duration = 45
+        set1s.internalVariation = 3.5
+        set1s.maxRepTime = 5
+        set1s.minRepTime = 2
+        set1s.meanRepTime = 3
+        set1s.movementType = "Bench Press"
+        set1s.weight = 145
+        set1s.repCount = 10
+        set1s.date = session2.date?.dateByAddingTimeInterval(10)
+        set1s.session = session2
+        overview2.insert(set1s.movementType!)
+        set1s.session = session2
+
+        
+        let set2s = NSEntityDescription.insertNewObjectForEntityForName("SetEntity", inManagedObjectContext: managedObjectContext) as! SetEntity
+        set2s.duration = 45
+        set2s.internalVariation = 3.5
+        set2s.maxRepTime = 5
+        set2s.minRepTime = 2
+        set2s.meanRepTime = 3
+        set2s.movementType = "Bench Press"
+        set2s.weight = 170
+        set2s.repCount = 8
+        set2s.date = set1s.date?.dateByAddingTimeInterval(45)
+        set2s.session = session2
+        overview2.insert(set2s.movementType!)
+        set2s.session = session2
+        
+        let set3s = NSEntityDescription.insertNewObjectForEntityForName("SetEntity", inManagedObjectContext: managedObjectContext) as! SetEntity
+        set3s.duration = 45
+        set3s.internalVariation = 3.5
+        set3s.maxRepTime = 5
+        set3s.minRepTime = 2
+        set3s.meanRepTime = 3
+        set3s.movementType = "Bench Press"
+        set3s.weight = 200
+        set3s.repCount = 6
+        set3s.date = set2s.date?.dateByAddingTimeInterval(45)
+        set3s.session = session2
+        overview2.insert(set3s.movementType!)
+        set3s.session = session2
+        
+        let set11s = NSEntityDescription.insertNewObjectForEntityForName("SetEntity", inManagedObjectContext: managedObjectContext) as! SetEntity
+        set11s.duration = 45
+        set11s.internalVariation = 3.5
+        set11s.maxRepTime = 5
+        set11s.minRepTime = 2
+        set11s.meanRepTime = 3
+        set11s.movementType = "Dumbbell Flies"
+        set11s.weight = 30
+        set11s.repCount = 8
+        set11s.date = set3s.date?.dateByAddingTimeInterval(45)
+        set11s.session = session2
+        overview2.insert(set11s.movementType!)
+        set11s.session = session2
+        
+        let set12s = NSEntityDescription.insertNewObjectForEntityForName("SetEntity", inManagedObjectContext: managedObjectContext) as! SetEntity
+        set12s.duration = 45
+        set12s.internalVariation = 3.5
+        set12s.maxRepTime = 5
+        set12s.minRepTime = 2
+        set12s.meanRepTime = 3
+        set12s.movementType = "Dumbbell Flies"
+        set12s.weight = 35
+        set12s.repCount = 8
+        set12s.date = set11s.date?.dateByAddingTimeInterval(45)
+        set12s.session = session
+        overview2.insert(set12s.movementType!)
+        set12s.session = session2
+        
+        let set13s = NSEntityDescription.insertNewObjectForEntityForName("SetEntity", inManagedObjectContext: managedObjectContext) as! SetEntity
+        set13s.duration = 45
+        set13s.internalVariation = 3.5
+        set13s.maxRepTime = 5
+        set13s.minRepTime = 2
+        set13s.meanRepTime = 3
+        set13s.movementType = "Dumbbell Flies"
+        set13s.weight = 40
+        set13s.repCount = 6
+        set13s.date = set12s.date?.dateByAddingTimeInterval(45)
+        set13s.session = session2
+        overview2.insert(set13s.movementType!)
+        set13s.session = session2
+        
+//        let sets2 = session2.mutableSetValueForKey("sets")
+//        sets2.addObject(set1)
+//        sets2.addObject(set2s)
+//        sets2.addObject(set3s)
+//        sets2.addObject(set11s)
+//        sets2.addObject(set12s)
+//        sets2.addObject(set13s)
+		session2.overView = overview2.joinWithSeparator(",")
+        
+        
+        
+        self.saveContext()
+    }
+    
 }
 

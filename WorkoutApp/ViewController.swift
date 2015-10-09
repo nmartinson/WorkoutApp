@@ -7,12 +7,21 @@
 //
 
 import UIKit
+import Charts
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, ChartViewDelegate {
 
+    @IBOutlet weak var pieChart: PieChartView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        pieChart.delegate = self
+        
+        let liftDict = CDSessionHelper().getLiftFrequency()
+        let data = CreateChartDataHelper().createPieChartDataForLiftFrequency(liftDict)
+        pieChart.data = data
+        
     }
 
     override func didReceiveMemoryWarning() {

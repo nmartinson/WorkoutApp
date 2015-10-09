@@ -9,9 +9,19 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>WorkoutWatch.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>0191D7721BC5FE2D00099A98</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>01D102351BBE11B400E8B7A7</key>
 		<dict>
 			<key>primary</key>
