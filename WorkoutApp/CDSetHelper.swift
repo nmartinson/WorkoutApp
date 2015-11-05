@@ -13,6 +13,7 @@ import CoreData
 class CDSetHelper
 {
     let managedObject = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+    let appDel = UIApplication.sharedApplication().delegate as! AppDelegate
 
     /****************************************************************************
 	*
@@ -65,6 +66,29 @@ class CDSetHelper
     }
     
 
+    /****************************************************************************
+     *
+     *****************************************************************************/
+    func updateSet(set: SetEntity)
+    {
+        let objectID = set.objectID
+		managedObject.objectWithID(objectID)
+        
+        do {
+            var object = try managedObject.existingObjectWithID(objectID) as! SetEntity
+            object = set
+			appDel.saveContext()
+
+        } catch {
+			let nserror = error as NSError
+            print("Error finding object by ID \(nserror)")
+        }
+    }
+    
+    
+    
+    
+    
     
     
 }

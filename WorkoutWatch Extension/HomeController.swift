@@ -8,14 +8,17 @@
 
 import Foundation
 import WatchKit
+import WatchConnectivity
 
-class HomeController: WKInterfaceController {
-
-    @IBAction func startWorkout() {
+class HomeController: WKInterfaceController, FmLocalDeviceDelegate {
+    
+    override func awakeWithContext(context: AnyObject?) {
         
-//        WKInterfaceController.openParentApplication(["request" : "refreshData"], reply: { (replyInfo, error) -> Void in
-//            NSLog("REPLY: \(replyInfo)")
-//        })
+    }
+    
+    @IBAction func startWorkout()
+    {
+        WKInterfaceController.reloadRootControllers([(name: "Workout", context: [])])
         
     }
     
@@ -23,4 +26,8 @@ class HomeController: WKInterfaceController {
         
     }
 
+    
+
+    
+    
 }

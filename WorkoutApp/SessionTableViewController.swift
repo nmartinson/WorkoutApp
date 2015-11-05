@@ -17,13 +17,39 @@ class SessionTableViewController: UIViewController, UITableViewDelegate, UITable
     var sessionId:NSManagedObjectID?
     var session:SessionEntity?
     var setsArray:[[SetEntity]]?
+    var selectedIndexPath:NSIndexPath?
     
     /****************************************************************************
     *
     *****************************************************************************/
     override func viewDidLoad()
     {
+        self.view.backgroundColor = PRIMARY_COLOR
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image:BACK_IMG, style:.Plain, target:self, action:"backButtonPressed:")
+
         (session, setsArray) = CDSessionHelper().getSession(sessionId!)
+        let formatter = NSDateFormatter()
+        formatter.dateStyle = .LongStyle
+        let dateString = formatter.stringFromDate(session!.date!)
+        self.title = dateString
+        
+        // Setup back button title for next view
+        let backButton = UIBarButtonItem(title: "Session", style: .Bordered, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = backButton
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        if selectedIndexPath != nil {
+            myTableView.deselectRowAtIndexPath(selectedIndexPath!, animated: true)
+        }
+    }
+    
+    @IBAction func swipedRight(sender: AnyObject) {
+        navigationController?.popViewControllerAnimated(true)
+    }
+    
+    func backButtonPressed(sender:UIButton) {
+        navigationController?.popViewControllerAnimated(true)
     }
     
     /****************************************************************************
@@ -32,7 +58,7 @@ class SessionTableViewController: UIViewController, UITableViewDelegate, UITable
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCellWithIdentifier("liftCell")
-        
+        cell?.textLabel?.textColor = UIColor.whiteColor()
         cell?.textLabel?.text = "Weight: \(setsArray![indexPath.section][indexPath.row].weight!)"
         return cell!
     }
@@ -42,6 +68,8 @@ class SessionTableViewController: UIViewController, UITableViewDelegate, UITable
     *****************************************************************************/
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
+        selectedIndexPath = indexPath
+        performSegueWithIdentifier("liftDetailSegue", sender: self)
     }
     
     /****************************************************************************
@@ -68,9 +96,13 @@ class SessionTableViewController: UIViewController, UITableViewDelegate, UITable
     /****************************************************************************
     *
     *****************************************************************************/
-    override func performSegueWithIdentifier(identifier: String, sender: AnyObject?)
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
     {
-        
+    	if segue.identifier == "liftDetailSegue"
+        {
+            let vc = segue.destinationViewController as! LiftDetailController
+            vc.selectedSet = setsArray![selectedIndexPath!.section][selectedIndexPath!.row]
+        }
     }
     
 }

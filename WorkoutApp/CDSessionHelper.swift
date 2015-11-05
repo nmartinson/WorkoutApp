@@ -43,7 +43,7 @@ class CDSessionHelper
     {
         var sessionList:[SessionEntity] = []
         let request = NSFetchRequest(entityName: "SessionEntity")
-        let sortDesc =  NSSortDescriptor(key: "date", ascending: true)
+        let sortDesc =  NSSortDescriptor(key: "date", ascending: false)
         request.sortDescriptors = [sortDesc]
         
         do {
@@ -120,9 +120,10 @@ class CDSessionHelper
     *	Gets the frequency of each lift 
     *	return:	dictionary<String,Int> of lift, # of occurences & sum of lifts
     *****************************************************************************/
-    func getLiftFrequency() -> Dictionary<String,Int>?
+    func getLiftFrequency() -> (Dictionary<String,Int>?, Int)
     {
 		var liftDictionary = Dictionary<String,Int>()
+        var sum = 0
         let request = NSFetchRequest(entityName: "SessionEntity")
         
         do {
@@ -139,13 +140,12 @@ class CDSessionHelper
                     }
                 }
             }
-            let sum = liftDictionary.values.reduce(0, combine: +)
-            liftDictionary["sum"] = sum
+            sum = liftDictionary.values.reduce(0, combine: +)
         } catch {
             let nserror = error as NSError
             print("Fetch error: \(nserror)")
         }
-        return liftDictionary
+        return (liftDictionary, sum)
     }
     
     /****************************************************************************
@@ -154,6 +154,7 @@ class CDSessionHelper
     func getAllLiftStrings() -> [String]
     {
         let request = NSFetchRequest(entityName: "SessionEntity")
+
         var liftStringSet = Set<String>()
         do {
             let results = try managedObject.executeFetchRequest(request) as! [SessionEntity]
@@ -165,8 +166,8 @@ class CDSessionHelper
 					liftStringSet.insert(lift)
                 }
             }
-
-            return Array(liftStringSet)
+			let sortedList = Array(liftStringSet).sort()
+            return sortedList
         } catch {
             let nserror = error as NSError
             print("Fetch error: \(nserror)")

@@ -5,10 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="9019"/>
     </dependencies>
     <scenes>
-        <!--Home Controller-->
+        <!--Home-->
         <scene sceneID="2nh-eB-gyd">
             <objects>
-                <controller id="mad-Ul-nzl" customClass="HomeController" customModule="FocusMotionTesting_WatchKit_Extension">
+                <controller identifier="Home" id="mad-Ul-nzl" customClass="HomeController" customModule="WorkoutWatch_Extension">
                     <items>
                         <button width="1" alignment="left" title="Start Workout" id="M04-ms-iG7">
                             <connections>
@@ -26,62 +26,109 @@
             </objects>
             <point key="canvasLocation" x="541" y="186"/>
         </scene>
-        <!--Workout Controller-->
+        <!--Workout-->
         <scene sceneID="3ht-yg-vQd">
             <objects>
-                <controller id="MuV-o9-lqz" customClass="WorkoutController" customModule="FocusMotionTesting_WatchKit_Extension">
+                <controller identifier="Workout" id="MuV-o9-lqz" customClass="WorkoutController" customModule="WorkoutWatch_Extension">
                     <items>
-                        <label alignment="center" text="Sessions" id="8Ya-0G-Gf2"/>
-                        <group width="1" alignment="left" id="quI-fy-z33">
+                        <timer alignment="right" id="GIg-J9-Ruw"/>
+                        <group width="1" alignment="left" id="CB3-cX-bNd">
                             <items>
-                                <table alignment="left" id="qcw-T5-0ub">
-                                    <items>
-                                        <tableRow identifier="WorkoutRow" id="iAg-X4-2d5" customClass="WorkoutRow" customModule="FocusMotionTesting_WatchKit_Extension">
-                                            <group key="rootItem" width="1" height="0.0" alignment="left" layout="vertical" id="3Zh-ln-WaS">
-                                                <items>
-                                                    <label alignment="left" text="Label" id="cis-2d-nuw"/>
-                                                    <dateLabel alignment="left" id="GNr-T7-SYJ">
-                                                        <dateFormatterStyle key="dateStyle" short="YES"/>
-                                                        <dateFormatterStyle key="timeStyle" short="YES"/>
-                                                    </dateLabel>
-                                                </items>
-                                            </group>
-                                            <connections>
-                                                <outlet property="dateObject" destination="GNr-T7-SYJ" id="PGh-HL-esA"/>
-                                                <outlet property="textLabel" destination="cis-2d-nuw" id="6f9-NH-3DL"/>
-                                            </connections>
-                                        </tableRow>
-                                    </items>
-                                </table>
+                                <imageView width="20" height="16" alignment="left" verticalAlignment="center" image="heart" id="V85-2b-j4N"/>
+                                <label height="26" alignment="left" text="---" textAlignment="left" baselineAdjustment="alignCenters" minimumScaleFactor="0.29999999999999999" id="XEb-t9-H5i">
+                                    <fontDescription key="font" type="system" pointSize="20"/>
+                                </label>
+                                <label alignment="left" text="BPM" id="hsL-CH-ARM">
+                                    <color key="textColor" red="0.8980392814" green="0.15686275059999999" blue="0.14509804549999999" alpha="1" colorSpace="deviceRGB"/>
+                                    <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
+                                </label>
+                                <label height="26" alignment="left" text="---" textAlignment="right" minimumScaleFactor="0.29999999999999999" id="DkS-tJ-R8b" userLabel="calVal"/>
+                                <label alignment="left" text="CAL" textAlignment="right" id="9iy-Do-Ecg">
+                                    <color key="textColor" red="0.8980392814" green="0.15686275059999999" blue="0.14509804549999999" alpha="1" colorSpace="deviceRGB"/>
+                                    <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
+                                </label>
+                            </items>
+                        </group>
+                        <switch width="1" alignment="left" hidden="YES" title="Start" id="Tiz-4z-4UH">
+                            <connections>
+                                <action selector="recordPressed:" destination="MuV-o9-lqz" id="kzS-oi-Y8p"/>
+                            </connections>
+                        </switch>
+                        <group width="1" alignment="left" layout="vertical" id="quI-fy-z33">
+                            <items>
+                                <label width="1" alignment="center" text="Label" numberOfLines="0" id="DQm-Ij-Qbx">
+                                    <fontDescription key="font" type="system" pointSize="13"/>
+                                </label>
                             </items>
                         </group>
                     </items>
+                    <menu key="menu" id="IaR-22-oVL"/>
                     <connections>
-                        <outlet property="workoutTable" destination="qcw-T5-0ub" id="odc-lR-zSG"/>
+                        <outlet property="calVal" destination="DkS-tJ-R8b" id="oSp-80-Mys"/>
+                        <outlet property="heart" destination="V85-2b-j4N" id="1Cg-1v-2mH"/>
+                        <outlet property="label" destination="XEb-t9-H5i" id="gfE-FN-5Df"/>
+                        <outlet property="recordSwitch" destination="Tiz-4z-4UH" id="QPD-Yg-5r1"/>
+                        <outlet property="resultLabel" destination="DQm-Ij-Qbx" id="EDo-Zx-u5A"/>
+                        <outlet property="timerLabel" destination="GIg-J9-Ruw" id="y5u-2K-ZOc"/>
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="752" y="186"/>
+            <point key="canvasLocation" x="839" y="186"/>
         </scene>
-        <!--Interface Controller-->
-        <scene sceneID="aou-V4-d1y">
+        <!--Summary-->
+        <scene sceneID="xvp-uf-eBa">
             <objects>
-                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="WorkoutWatch" customModuleProvider="target">
+                <controller identifier="Summary" id="Bc1-qu-JIu" customClass="SummaryController" customModule="WorkoutWatch_Extension">
                     <items>
-                        <label height="20" alignment="center" text="Label" id="dCc-1w-GEG"/>
-                        <label alignment="left" text="Label" id="TSD-nS-lwI"/>
-                        <label alignment="left" text="Label" id="pxr-AU-Ngq"/>
-                        <label alignment="left" text="Label" id="LYt-5j-sZA"/>
+                        <label alignment="center" text="Well done! Here's your summary" textAlignment="left" numberOfLines="0" id="BW8-so-PRd"/>
+                        <table alignment="left" id="Anp-ma-q1q">
+                            <items>
+                                <tableRow identifier="WorkoutRow" id="Ttc-fq-c29" customClass="WorkoutRow" customModule="WorkoutWatch_Extension">
+                                    <group key="rootItem" width="1" alignment="left" id="2be-w2-kC8">
+                                        <items>
+                                            <label alignment="left" verticalAlignment="center" text="Label" textAlignment="left" id="RbP-fN-dTz"/>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="textLabel" destination="RbP-fN-dTz" id="uAi-J7-cDc"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                        <button width="1" alignment="left" title="Save" id="ShE-K3-GcZ">
+                            <color key="backgroundColor" red="0.0" green="0.69590559554973819" blue="0.068345650413434975" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="savePressed" destination="Bc1-qu-JIu" id="sfN-ff-s2v"/>
+                            </connections>
+                        </button>
+                        <button width="1" alignment="left" title="Discard" id="9rR-hD-Hqd">
+                            <color key="backgroundColor" red="0.8980392814" green="0.15686275059999999" blue="0.14509804549999999" alpha="1" colorSpace="deviceRGB"/>
+                            <connections>
+                                <action selector="discardPressed" destination="Bc1-qu-JIu" id="gdc-sf-64i"/>
+                            </connections>
+                        </button>
                     </items>
                     <connections>
-                        <outlet property="magLabel" destination="LYt-5j-sZA" id="yfX-2q-qxC"/>
-                        <outlet property="xLabel" destination="dCc-1w-GEG" id="orh-NB-kxa"/>
-                        <outlet property="yLabel" destination="TSD-nS-lwI" id="okR-GU-xyS"/>
-                        <outlet property="zLabel" destination="pxr-AU-Ngq" id="ijb-fT-ThS"/>
+                        <outlet property="tableView" destination="Anp-ma-q1q" id="HXb-oY-29L"/>
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="541" y="447"/>
+            <point key="canvasLocation" x="840" y="471"/>
+        </scene>
+        <!--Sessions-->
+        <scene sceneID="aou-V4-d1y">
+            <objects>
+                <controller identifier="Sessions" id="AgC-eL-Hgc" customClass="SessionsController" customModule="WorkoutWatch_Extension">
+                    <items>
+                        <label height="20" alignment="center" text="Sessions" id="dCc-1w-GEG"/>
+                        <label alignment="left" text="Label" numberOfLines="0" id="J0L-Fs-Fow"/>
+                    </items>
+                    <connections>
+                        <outlet property="responseLabel" destination="J0L-Fs-Fow" id="t4a-0y-tS4"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="541" y="478"/>
         </scene>
     </scenes>
 </document>

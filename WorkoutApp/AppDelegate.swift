@@ -8,7 +8,8 @@
 
 import UIKit
 import CoreData
-
+import WatchConnectivity
+import HealthKit
 
 extension NSDate
 {
@@ -23,52 +24,22 @@ extension NSDate
 }
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, FmDeviceDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
 
     var window: UIWindow?
-    var m_device:FmDevice?
+    let session = WCSession.defaultSession()
+    let healthStore = HKHealthStore()
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
-        
-        var config = FmConfig()
-        FmConfigInit(&config)
-        if !FmInit(&config, "34DNjw?K0jjhds8rfD4JwhbJXI7PFKCo")
-        {
-            print("NOT INIT")
-        }
-        
-        FmDevice.initializeInstance(self)
-		FmAppleWatchDevice.initializeInstance(nil)
-        
+        UIApplication.sharedApplication().statusBarStyle = .LightContent
+//        UINavigationBar.appearance().setBackgroundImage(UIImage(), forBarMetrics: .Default)
+        UINavigationBar.appearance().shadowImage = UIImage()
+		UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+        UINavigationBar.appearance().barTintColor = BAR_TINT_COLOR
         
 //        populateWithTestData()
         return true
-    }
-    
-    func dataReceived(device: FmDevice!) {
-        
-    }
-    
-    func connectionFailed(device: FmDevice!, error: NSError!) {
-        
-    }
-    
-    func recordingChanged(device: FmDevice!, recording: Bool) {
-        
-    }
-    
-    func availableChanged(device: FmDevice!, available: Bool) {
-        
-    }
-    
-    func connectedChanged(device: FmDevice!, connected: Bool) {
-        print("Connected to \(device)")
-        if connected{
-            m_device = device
-        } else {
-            m_device = nil
-        }
     }
 
     func applicationWillResignActive(application: UIApplication) {
@@ -95,6 +66,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FmDeviceDelegate {
         self.saveContext()
     }
 
+    func applicationShouldRequestHealthAuthorization(application: UIApplication) {
+
+        guard HKHealthStore.isHealthDataAvailable() else {
+            return
+        }
+        
+        self.healthStore.handleAuthorizationForExtensionWithCompletion { (_, error) -> Void in
+            print(error)
+        }
+    }
     // MARK: - Core Data stack
 
     lazy var applicationDocumentsDirectory: NSURL = {
@@ -166,9 +147,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FmDeviceDelegate {
         let session = NSEntityDescription.insertNewObjectForEntityForName("SessionEntity", inManagedObjectContext: managedObjectContext) as! SessionEntity
         session.duration = 3600
         session.date = NSDate(dateString:"2015-09-06")
-	
-        //        session.sets =
-	
         
         let set1 = NSEntityDescription.insertNewObjectForEntityForName("SetEntity", inManagedObjectContext: managedObjectContext) as! SetEntity
         set1.duration = 45
@@ -258,14 +236,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FmDeviceDelegate {
         set13.session = session
         overViewSet.insert(set13.movementType!)
         set13.session = session
-        
-//        let sets = session.mutableSetValueForKey("sets")
-//        sets.addObject(set1)
-//        sets.addObject(set2)
-//        sets.addObject(set3)
-//        sets.addObject(set11)
-//        sets.addObject(set12)
-//        sets.addObject(set13)
         session.overView = overViewSet.joinWithSeparator(",")
 
         
@@ -360,17 +330,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FmDeviceDelegate {
         set13s.session = session2
         overview2.insert(set13s.movementType!)
         set13s.session = session2
-        
-//        let sets2 = session2.mutableSetValueForKey("sets")
-//        sets2.addObject(set1)
-//        sets2.addObject(set2s)
-//        sets2.addObject(set3s)
-//        sets2.addObject(set11s)
-//        sets2.addObject(set12s)
-//        sets2.addObject(set13s)
 		session2.overView = overview2.joinWithSeparator(",")
-        
-        
         
         self.saveContext()
     }
