@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9056" systemVersion="15A284" minimumToolsVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9057" systemVersion="15A284" minimumToolsVersion="Automatic">
+    <entity name="MovementsEntity" representedClassName=".Movements" syncable="YES">
+        <attribute name="isAppDefault" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="isFocusMotionDefault" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="movementName" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="SessionEntity" representedClassName=".SessionEntity" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="duration" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
@@ -21,5 +26,6 @@
     <elements>
         <element name="SessionEntity" positionX="-63" positionY="-18" width="128" height="105"/>
         <element name="SetEntity" positionX="-45" positionY="36" width="128" height="195"/>
+        <element name="MovementsEntity" positionX="-54" positionY="90" width="128" height="90"/>
     </elements>
 </model>

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		011A9F8A1BDDAD1B004DF3C4 /* data in Resources */ = {isa = PBXBuildFile; fileRef = 01C5EB331BCB07BC0022386D /* data */; };
 		011A9F8C1BE02A19004DF3C4 /* SummaryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011A9F8B1BE02A18004DF3C4 /* SummaryController.swift */; };
 		011A9F8E1BE02BFE004DF3C4 /* SetEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011A9F8D1BE02BFE004DF3C4 /* SetEntity.swift */; };
 		011A9F901BE196C6004DF3C4 /* LiftDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011A9F8F1BE196C6004DF3C4 /* LiftDetailController.swift */; };
@@ -21,11 +20,18 @@
 		013B7D9F1BE42A1500E526E6 /* BalloonMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013B7D9E1BE42A1500E526E6 /* BalloonMarker.swift */; };
 		013B7DA11BE4316400E526E6 /* LiftFrequencyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013B7DA01BE4316400E526E6 /* LiftFrequencyCell.swift */; };
 		013B7DA41BE4382000E526E6 /* LiftHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013B7DA31BE4382000E526E6 /* LiftHistoryCell.swift */; };
+		01480B9A1BFA24A1001B738C /* CalendarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01480B991BFA24A1001B738C /* CalendarController.swift */; };
+		015C4B3B1BEE86A00080B703 /* AccelerometerFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015C4B3A1BEE86A00080B703 /* AccelerometerFilter.swift */; };
 		01624CB01BC1EBD6003C86D1 /* SessionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01624CAF1BC1EBD6003C86D1 /* SessionsTableViewController.swift */; };
 		01624CB21BC1F070003C86D1 /* SessionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01624CB11BC1F070003C86D1 /* SessionTableViewController.swift */; };
 		01624CB41BC2AE2F003C86D1 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01624CB31BC2AE2F003C86D1 /* HomeController.swift */; };
 		01624CB61BC2B09C003C86D1 /* HomeCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01624CB51BC2B09C003C86D1 /* HomeCollectionCell.xib */; };
 		01624CB81BC2B114003C86D1 /* HomeCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01624CB71BC2B114003C86D1 /* HomeCollectionCell.swift */; };
+		016B3F8A1C03F97F00FF2ED5 /* AddLiftController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016B3F891C03F97F00FF2ED5 /* AddLiftController.swift */; };
+		017171AF1C060071005E917F /* CalendarMenuControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017171AD1C060071005E917F /* CalendarMenuControllerViewController.swift */; };
+		017171B01C060071005E917F /* CalendarMenuControllerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 017171AE1C060071005E917F /* CalendarMenuControllerViewController.xib */; };
+		017171B41C0B7D6F005E917F /* LiftDataCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 017171B31C0B7D6F005E917F /* LiftDataCell.xib */; };
+		017171B61C0B7E60005E917F /* LiftDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017171B51C0B7E60005E917F /* LiftDataCell.swift */; };
 		018120541BCB1164003C305C /* focusmotion-applewatch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 018120521BCB1164003C305C /* focusmotion-applewatch.framework */; };
 		018120551BCB1164003C305C /* focusmotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 018120531BCB1164003C305C /* focusmotion.framework */; };
 		018660BA1BC48B7200EA068A /* LiftHistoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018660B91BC48B7200EA068A /* LiftHistoryController.swift */; };
@@ -35,6 +41,7 @@
 		0191D7891BC5FE2D00099A98 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0191D7881BC5FE2D00099A98 /* Assets.xcassets */; };
 		0191D78D1BC5FE2D00099A98 /* WorkoutWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 0191D7731BC5FE2D00099A98 /* WorkoutWatch.app */; };
 		019522871BBF44BA00C922D5 /* CDSetHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019522861BBF44BA00C922D5 /* CDSetHelper.swift */; };
+		01AFDF1C1BFE540200A1D5BB /* data in Resources */ = {isa = PBXBuildFile; fileRef = 01AFDF1B1BFE53A300A1D5BB /* data */; };
 		01B4F7B61BDB1254003A01EE /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01B4F7B51BDB1254003A01EE /* HealthKit.framework */; };
 		01B74D4B1BC010AF008B54AB /* CDSessionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B74D4A1BC010AF008B54AB /* CDSessionHelper.swift */; };
 		01C5EB0C1BC7F5DA0022386D /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01C5EB0B1BC7F5DA0022386D /* Interface.storyboard */; };
@@ -56,6 +63,12 @@
 		01D102541BBE163800E8B7A7 /* Set+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D102501BBE163800E8B7A7 /* Set+CoreDataProperties.swift */; };
 		01D102551BBE163800E8B7A7 /* Set.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D102511BBE163800E8B7A7 /* Set.swift */; };
 		01D102581BBEBD0700E8B7A7 /* CreateChartDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D102571BBEBD0700E8B7A7 /* CreateChartDataHelper.swift */; };
+		01EC81E71BF17A25000D1F81 /* TrainingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EC81E61BF17A25000D1F81 /* TrainingController.swift */; };
+		01EC81E91BF230D7000D1F81 /* TrainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EC81E81BF230D7000D1F81 /* TrainerController.swift */; };
+		01EF0BE51C04AEB9001F8A2E /* Movements+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EF0BE31C04AEB9001F8A2E /* Movements+CoreDataProperties.swift */; };
+		01EF0BE61C04AEB9001F8A2E /* Movements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EF0BE41C04AEB9001F8A2E /* Movements.swift */; };
+		01EF0BE91C04AEF0001F8A2E /* CDMovementHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EF0BE81C04AEF0001F8A2E /* CDMovementHelper.swift */; };
+		01F7D21E1BFBE88E00371706 /* EmptyDataView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01F7D21D1BFBE88E00371706 /* EmptyDataView.xib */; };
 		3D5D4B8CC4C4FEAB5D9E5473 /* Pods_WorkoutApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5858AA8B4C03566A59C30903 /* Pods_WorkoutApp.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -121,17 +134,24 @@
 		0127716F1BC55254001AA893 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		012771711BC5525C001AA893 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		012771731BC55267001AA893 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
-		012771771BC55407001AA893 /* WorkoutApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WorkoutApp-Bridging-Header.h"; sourceTree = "<group>"; };
 		0127717B1BC555BA001AA893 /* LiftHistoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiftHistoryTableViewController.swift; sourceTree = "<group>"; };
 		013B7D9C1BE3C6A900E526E6 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		013B7D9E1BE42A1500E526E6 /* BalloonMarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalloonMarker.swift; sourceTree = "<group>"; };
 		013B7DA01BE4316400E526E6 /* LiftFrequencyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiftFrequencyCell.swift; sourceTree = "<group>"; };
 		013B7DA31BE4382000E526E6 /* LiftHistoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiftHistoryCell.swift; sourceTree = "<group>"; };
+		01480B991BFA24A1001B738C /* CalendarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarController.swift; sourceTree = "<group>"; };
+		015C4B3A1BEE86A00080B703 /* AccelerometerFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccelerometerFilter.swift; sourceTree = "<group>"; };
 		01624CAF1BC1EBD6003C86D1 /* SessionsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsTableViewController.swift; sourceTree = "<group>"; };
 		01624CB11BC1F070003C86D1 /* SessionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionTableViewController.swift; sourceTree = "<group>"; };
 		01624CB31BC2AE2F003C86D1 /* HomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		01624CB51BC2B09C003C86D1 /* HomeCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeCollectionCell.xib; sourceTree = "<group>"; };
 		01624CB71BC2B114003C86D1 /* HomeCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeCollectionCell.swift; sourceTree = "<group>"; };
+		016297D01BFB659000AAC5B6 /* WorkoutApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WorkoutApp-Bridging-Header.h"; sourceTree = "<group>"; };
+		016B3F891C03F97F00FF2ED5 /* AddLiftController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddLiftController.swift; sourceTree = "<group>"; };
+		017171AD1C060071005E917F /* CalendarMenuControllerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarMenuControllerViewController.swift; sourceTree = "<group>"; };
+		017171AE1C060071005E917F /* CalendarMenuControllerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CalendarMenuControllerViewController.xib; sourceTree = "<group>"; };
+		017171B31C0B7D6F005E917F /* LiftDataCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LiftDataCell.xib; sourceTree = "<group>"; };
+		017171B51C0B7E60005E917F /* LiftDataCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiftDataCell.swift; sourceTree = "<group>"; };
 		018120521BCB1164003C305C /* focusmotion-applewatch.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = "focusmotion-applewatch.framework"; sourceTree = "<group>"; };
 		018120531BCB1164003C305C /* focusmotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = focusmotion.framework; sourceTree = "<group>"; };
 		018660B91BC48B7200EA068A /* LiftHistoryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiftHistoryController.swift; sourceTree = "<group>"; };
@@ -147,6 +167,7 @@
 		0191D7981BC5FEDC00099A98 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS2.0.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
 		0191D79A1BC5FEE500099A98 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "Platforms/WatchOS.platform/Developer/SDKs/WatchOS2.0.sdk/usr/lib/libc++.tbd"; sourceTree = DEVELOPER_DIR; };
 		019522861BBF44BA00C922D5 /* CDSetHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDSetHelper.swift; sourceTree = "<group>"; };
+		01AFDF1B1BFE53A300A1D5BB /* data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = data; sourceTree = "<group>"; };
 		01B4F7B51BDB1254003A01EE /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		01B74D4A1BC010AF008B54AB /* CDSessionHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDSessionHelper.swift; sourceTree = "<group>"; };
 		01C5EB0B1BC7F5DA0022386D /* Interface.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Interface.storyboard; sourceTree = "<group>"; };
@@ -155,7 +176,6 @@
 		01C5EB131BC7F6710022386D /* WorkoutRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutRow.swift; sourceTree = "<group>"; };
 		01C5EB231BC877B20022386D /* WorkoutWatch Extension-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WorkoutWatch Extension-Bridging-Header.h"; sourceTree = "<group>"; };
 		01C5EB271BC941DF0022386D /* WorkoutApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = WorkoutApp.entitlements; sourceTree = "<group>"; };
-		01C5EB331BCB07BC0022386D /* data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = data; sourceTree = "<group>"; };
 		01D102361BBE11B400E8B7A7 /* WorkoutApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorkoutApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01D102391BBE11B400E8B7A7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		01D1023B1BBE11B400E8B7A7 /* LiftFrequencyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiftFrequencyController.swift; sourceTree = "<group>"; };
@@ -169,6 +189,12 @@
 		01D102501BBE163800E8B7A7 /* Set+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Set+CoreDataProperties.swift"; path = "CoreData/Set+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		01D102511BBE163800E8B7A7 /* Set.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Set.swift; path = CoreData/Set.swift; sourceTree = "<group>"; };
 		01D102571BBEBD0700E8B7A7 /* CreateChartDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateChartDataHelper.swift; sourceTree = "<group>"; };
+		01EC81E61BF17A25000D1F81 /* TrainingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingController.swift; sourceTree = "<group>"; };
+		01EC81E81BF230D7000D1F81 /* TrainerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainerController.swift; sourceTree = "<group>"; };
+		01EF0BE31C04AEB9001F8A2E /* Movements+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Movements+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		01EF0BE41C04AEB9001F8A2E /* Movements.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Movements.swift; sourceTree = "<group>"; };
+		01EF0BE81C04AEF0001F8A2E /* CDMovementHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDMovementHelper.swift; sourceTree = "<group>"; };
+		01F7D21D1BFBE88E00371706 /* EmptyDataView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EmptyDataView.xib; path = "../WorkoutWatch Extension/EmptyDataView.xib"; sourceTree = "<group>"; };
 		331C0E4565D7DE1E4686F810 /* Pods-WorkoutApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkoutApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-WorkoutApp/Pods-WorkoutApp.release.xcconfig"; sourceTree = "<group>"; };
 		533708CA80E5B3E70F89078E /* Pods-WorkoutApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkoutApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WorkoutApp/Pods-WorkoutApp.debug.xcconfig"; sourceTree = "<group>"; };
 		5858AA8B4C03566A59C30903 /* Pods_WorkoutApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WorkoutApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -224,6 +250,24 @@
 			name = HomeController;
 			sourceTree = "<group>";
 		};
+		017171B11C063D56005E917F /* CalendarMenu */ = {
+			isa = PBXGroup;
+			children = (
+				017171AD1C060071005E917F /* CalendarMenuControllerViewController.swift */,
+				017171AE1C060071005E917F /* CalendarMenuControllerViewController.xib */,
+			);
+			name = CalendarMenu;
+			sourceTree = "<group>";
+		};
+		017171B21C063D6A005E917F /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				01480B991BFA24A1001B738C /* CalendarController.swift */,
+				017171B11C063D56005E917F /* CalendarMenu */,
+			);
+			name = Calendar;
+			sourceTree = "<group>";
+		};
 		018660B71BC486AB00EA068A /* Session */ = {
 			isa = PBXGroup;
 			children = (
@@ -258,16 +302,17 @@
 			isa = PBXGroup;
 			children = (
 				0124B8E71BD9C2E100AB853F /* WorkoutWatch Extension.entitlements */,
+				01EC81E51BF12250000D1F81 /* Summary */,
 				0191D7841BC5FE2D00099A98 /* SessionsController.swift */,
 				01C5EB101BC7F6710022386D /* HomeController.swift */,
 				01C5EB121BC7F6710022386D /* WorkoutController.swift */,
-				01C5EB131BC7F6710022386D /* WorkoutRow.swift */,
 				0191D7861BC5FE2D00099A98 /* ExtensionDelegate.swift */,
 				0191D7881BC5FE2D00099A98 /* Assets.xcassets */,
 				0191D78A1BC5FE2D00099A98 /* Info.plist */,
 				01C5EB231BC877B20022386D /* WorkoutWatch Extension-Bridging-Header.h */,
-				011A9F8B1BE02A18004DF3C4 /* SummaryController.swift */,
 				011A9F8D1BE02BFE004DF3C4 /* SetEntity.swift */,
+				015C4B3A1BEE86A00080B703 /* AccelerometerFilter.swift */,
+				01EC81E61BF17A25000D1F81 /* TrainingController.swift */,
 			);
 			path = "WorkoutWatch Extension";
 			sourceTree = "<group>";
@@ -275,7 +320,7 @@
 		01D1022D1BBE11B400E8B7A7 = {
 			isa = PBXGroup;
 			children = (
-				01C5EB331BCB07BC0022386D /* data */,
+				01AFDF1B1BFE53A300A1D5BB /* data */,
 				01D102381BBE11B400E8B7A7 /* WorkoutApp */,
 				0191D7741BC5FE2D00099A98 /* WorkoutWatch */,
 				0191D7831BC5FE2D00099A98 /* WorkoutWatch Extension */,
@@ -302,21 +347,26 @@
 				01C5EB271BC941DF0022386D /* WorkoutApp.entitlements */,
 				01D102561BBE16D500E8B7A7 /* CoreData */,
 				01624CB91BC2B130003C86D1 /* HomeController */,
+				017171B21C063D6A005E917F /* Calendar */,
 				01D102391BBE11B400E8B7A7 /* AppDelegate.swift */,
+				017171B31C0B7D6F005E917F /* LiftDataCell.xib */,
+				017171B51C0B7E60005E917F /* LiftDataCell.swift */,
 				013B7D9C1BE3C6A900E526E6 /* Constants.swift */,
 				01D1023B1BBE11B400E8B7A7 /* LiftFrequencyController.swift */,
 				01D102571BBEBD0700E8B7A7 /* CreateChartDataHelper.swift */,
 				01624CAF1BC1EBD6003C86D1 /* SessionsTableViewController.swift */,
+				01624CB11BC1F070003C86D1 /* SessionTableViewController.swift */,
 				0127717B1BC555BA001AA893 /* LiftHistoryTableViewController.swift */,
 				01D1023D1BBE11B400E8B7A7 /* Main.storyboard */,
 				018660B91BC48B7200EA068A /* LiftHistoryController.swift */,
 				01D102431BBE11B400E8B7A7 /* Assets.xcassets */,
 				01D102451BBE11B400E8B7A7 /* LaunchScreen.storyboard */,
 				01D102481BBE11B400E8B7A7 /* Info.plist */,
-				01D102401BBE11B400E8B7A7 /* WorkoutApp.xcdatamodeld */,
-				01624CB11BC1F070003C86D1 /* SessionTableViewController.swift */,
 				011A9F8F1BE196C6004DF3C4 /* LiftDetailController.swift */,
-				012771771BC55407001AA893 /* WorkoutApp-Bridging-Header.h */,
+				01EC81E81BF230D7000D1F81 /* TrainerController.swift */,
+				016297D01BFB659000AAC5B6 /* WorkoutApp-Bridging-Header.h */,
+				01F7D21D1BFBE88E00371706 /* EmptyDataView.xib */,
+				016B3F891C03F97F00FF2ED5 /* AddLiftController.swift */,
 			);
 			path = WorkoutApp;
 			sourceTree = "<group>";
@@ -324,10 +374,31 @@
 		01D102561BBE16D500E8B7A7 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				01D102401BBE11B400E8B7A7 /* WorkoutApp.xcdatamodeld */,
+				01EF0BE71C04AEC1001F8A2E /* Movement */,
 				018660B71BC486AB00EA068A /* Session */,
 				018660B81BC486B500EA068A /* Set */,
 			);
 			name = CoreData;
+			sourceTree = "<group>";
+		};
+		01EC81E51BF12250000D1F81 /* Summary */ = {
+			isa = PBXGroup;
+			children = (
+				01C5EB131BC7F6710022386D /* WorkoutRow.swift */,
+				011A9F8B1BE02A18004DF3C4 /* SummaryController.swift */,
+			);
+			name = Summary;
+			sourceTree = "<group>";
+		};
+		01EF0BE71C04AEC1001F8A2E /* Movement */ = {
+			isa = PBXGroup;
+			children = (
+				01EF0BE31C04AEB9001F8A2E /* Movements+CoreDataProperties.swift */,
+				01EF0BE41C04AEB9001F8A2E /* Movements.swift */,
+				01EF0BE81C04AEF0001F8A2E /* CDMovementHelper.swift */,
+			);
+			name = Movement;
 			sourceTree = "<group>";
 		};
 		364B98D00449A896CA167E00 /* Pods */ = {
@@ -486,7 +557,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				011A9F8A1BDDAD1B004DF3C4 /* data in Resources */,
+				01AFDF1C1BFE540200A1D5BB /* data in Resources */,
 				0191D7891BC5FE2D00099A98 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -497,6 +568,9 @@
 			files = (
 				01624CB61BC2B09C003C86D1 /* HomeCollectionCell.xib in Resources */,
 				01D102471BBE11B400E8B7A7 /* LaunchScreen.storyboard in Resources */,
+				01F7D21E1BFBE88E00371706 /* EmptyDataView.xib in Resources */,
+				017171B41C0B7D6F005E917F /* LiftDataCell.xib in Resources */,
+				017171B01C060071005E917F /* CalendarMenuControllerViewController.xib in Resources */,
 				01D102441BBE11B400E8B7A7 /* Assets.xcassets in Resources */,
 				01D1023F1BBE11B400E8B7A7 /* Main.storyboard in Resources */,
 			);
@@ -562,6 +636,8 @@
 				0191D7871BC5FE2D00099A98 /* ExtensionDelegate.swift in Sources */,
 				01C5EB141BC7F6710022386D /* HomeController.swift in Sources */,
 				01C5EB171BC7F6710022386D /* WorkoutRow.swift in Sources */,
+				015C4B3B1BEE86A00080B703 /* AccelerometerFilter.swift in Sources */,
+				01EC81E71BF17A25000D1F81 /* TrainingController.swift in Sources */,
 				01C5EB161BC7F6710022386D /* WorkoutController.swift in Sources */,
 				011A9F8E1BE02BFE004DF3C4 /* SetEntity.swift in Sources */,
 			);
@@ -576,21 +652,29 @@
 				01D102541BBE163800E8B7A7 /* Set+CoreDataProperties.swift in Sources */,
 				01624CB01BC1EBD6003C86D1 /* SessionsTableViewController.swift in Sources */,
 				01D102551BBE163800E8B7A7 /* Set.swift in Sources */,
+				01480B9A1BFA24A1001B738C /* CalendarController.swift in Sources */,
 				01D1023C1BBE11B400E8B7A7 /* LiftFrequencyController.swift in Sources */,
 				01624CB81BC2B114003C86D1 /* HomeCollectionCell.swift in Sources */,
 				0127717C1BC555BA001AA893 /* LiftHistoryTableViewController.swift in Sources */,
 				013B7D9F1BE42A1500E526E6 /* BalloonMarker.swift in Sources */,
+				01EC81E91BF230D7000D1F81 /* TrainerController.swift in Sources */,
 				01624CB41BC2AE2F003C86D1 /* HomeController.swift in Sources */,
 				01D102421BBE11B400E8B7A7 /* WorkoutApp.xcdatamodeld in Sources */,
 				013B7DA41BE4382000E526E6 /* LiftHistoryCell.swift in Sources */,
+				016B3F8A1C03F97F00FF2ED5 /* AddLiftController.swift in Sources */,
 				011A9F901BE196C6004DF3C4 /* LiftDetailController.swift in Sources */,
 				019522871BBF44BA00C922D5 /* CDSetHelper.swift in Sources */,
 				01624CB21BC1F070003C86D1 /* SessionTableViewController.swift in Sources */,
+				01EF0BE61C04AEB9001F8A2E /* Movements.swift in Sources */,
 				01D102581BBEBD0700E8B7A7 /* CreateChartDataHelper.swift in Sources */,
 				013B7DA11BE4316400E526E6 /* LiftFrequencyCell.swift in Sources */,
 				01D1023A1BBE11B400E8B7A7 /* AppDelegate.swift in Sources */,
+				01EF0BE91C04AEF0001F8A2E /* CDMovementHelper.swift in Sources */,
+				017171AF1C060071005E917F /* CalendarMenuControllerViewController.swift in Sources */,
 				01B74D4B1BC010AF008B54AB /* CDSessionHelper.swift in Sources */,
 				018660BA1BC48B7200EA068A /* LiftHistoryController.swift in Sources */,
+				01EF0BE51C04AEB9001F8A2E /* Movements+CoreDataProperties.swift in Sources */,
+				017171B61C0B7E60005E917F /* LiftDataCell.swift in Sources */,
 				013B7D9D1BE3C6A900E526E6 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -766,12 +850,15 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "";
 				VALID_ARCHS = "arm64 armv7 armv7s i386";
 			};
 			name = Debug;
@@ -806,11 +893,14 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_INSTALL_OBJC_HEADER = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "arm64 armv7 armv7s i386";
 			};
@@ -820,6 +910,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 533708CA80E5B3E70F89078E /* Pods-WorkoutApp.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = WorkoutApp/WorkoutApp.entitlements;
@@ -829,6 +920,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = WorkoutApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -844,6 +936,7 @@
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "WorkoutApp/WorkoutApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				USER_HEADER_SEARCH_PATHS = "Pods/*";
 				VALID_ARCHS = "arm64 armv7 armv7s i386";
 			};
 			name = Debug;
@@ -852,6 +945,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 331C0E4565D7DE1E4686F810 /* Pods-WorkoutApp.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = WorkoutApp/WorkoutApp.entitlements;
@@ -861,6 +955,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = WorkoutApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -875,6 +970,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "WorkoutApp/WorkoutApp-Bridging-Header.h";
+				USER_HEADER_SEARCH_PATHS = "Pods/*";
 				VALID_ARCHS = "arm64 armv7 armv7s i386";
 			};
 			name = Release;

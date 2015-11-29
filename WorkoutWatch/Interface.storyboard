@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="9058" systemVersion="15A284" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="mad-Ul-nzl">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="9059" systemVersion="15A284" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="mad-Ul-nzl">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9048"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="9019"/>
     </dependencies>
     <scenes>
@@ -15,6 +15,11 @@
                                 <action selector="startWorkout" destination="mad-Ul-nzl" id="7ez-kq-8I5"/>
                             </connections>
                         </button>
+                        <button width="1" alignment="left" title="Train" id="uRh-8X-bVf">
+                            <connections>
+                                <segue destination="xzM-es-jcZ" kind="push" id="SzB-Mt-H14"/>
+                            </connections>
+                        </button>
                         <button width="1" alignment="left" title="View Workouts" id="6Dh-Nc-gHh">
                             <connections>
                                 <action selector="viewWorkouts" destination="mad-Ul-nzl" id="9TE-Cw-eFi"/>
@@ -22,9 +27,48 @@
                             </connections>
                         </button>
                     </items>
+                    <connections>
+                        <outlet property="startWorkoutbutton" destination="M04-ms-iG7" id="BM6-N7-vhp"/>
+                        <outlet property="trainButton" destination="uRh-8X-bVf" id="1aJ-aT-TSy"/>
+                        <outlet property="viewWorkoutsButton" destination="6Dh-Nc-gHh" id="C7u-7J-rD5"/>
+                    </connections>
                 </controller>
             </objects>
             <point key="canvasLocation" x="541" y="186"/>
+        </scene>
+        <!--Training Controller-->
+        <scene sceneID="PoQ-CV-dwy">
+            <objects>
+                <controller id="xzM-es-jcZ" customClass="TrainingController" customModule="WorkoutWatch_Extension">
+                    <items>
+                        <group width="1" alignment="left" layout="vertical" id="mNc-1J-2Wt">
+                            <items>
+                                <label alignment="left" text="Lift:" id="wPp-xh-Jhr"/>
+                                <label alignment="left" text="Reps:" id="DHG-in-KEk"/>
+                            </items>
+                        </group>
+                        <switch width="1" alignment="left" title="Start" id="5uJ-aP-9vF">
+                            <connections>
+                                <action selector="startPressed:" destination="xzM-es-jcZ" id="IDR-c0-rgt"/>
+                            </connections>
+                        </switch>
+                        <button width="1" alignment="left" title="Train" id="EcC-v0-Otd">
+                            <connections>
+                                <action selector="trainPressed" destination="xzM-es-jcZ" id="HkI-pM-I1Q"/>
+                            </connections>
+                        </button>
+                        <label alignment="left" text="Label" textAlignment="left" numberOfLines="0" id="YD8-fF-AKz"/>
+                    </items>
+                    <connections>
+                        <outlet property="liftLabel" destination="wPp-xh-Jhr" id="D9Y-FJ-bur"/>
+                        <outlet property="repsLabel" destination="DHG-in-KEk" id="WPc-dG-kNo"/>
+                        <outlet property="resultLabel" destination="YD8-fF-AKz" id="WDt-h1-DdE"/>
+                        <outlet property="trainButton" destination="EcC-v0-Otd" id="1KH-DQ-QF3"/>
+                        <outlet property="traingSwitch" destination="5uJ-aP-9vF" id="1iJ-Bg-WgQ"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="840" y="-81"/>
         </scene>
         <!--Workout-->
         <scene sceneID="3ht-yg-vQd">
@@ -131,4 +175,5 @@
             <point key="canvasLocation" x="541" y="478"/>
         </scene>
     </scenes>
+    <color key="tintColor" red="0.0" green="0.40392156862745099" blue="1" alpha="1" colorSpace="calibratedRGB"/>
 </document>

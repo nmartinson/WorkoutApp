@@ -11,23 +11,32 @@ import WatchKit
 import WatchConnectivity
 
 class HomeController: WKInterfaceController, FmLocalDeviceDelegate {
+  @IBOutlet var startWorkoutbutton: WKInterfaceButton!
+  @IBOutlet var trainButton: WKInterfaceButton!
+  @IBOutlet var viewWorkoutsButton: WKInterfaceButton!
+  
+  override func awakeWithContext(context: AnyObject?) {
+    self.setTitle("Workout App")
+    let PRIMARY_COLOR = UIColor(red: 0/255, green: 103/255, blue: 255/255, alpha: 1)
+
+    startWorkoutbutton.setBackgroundColor(PRIMARY_COLOR)
+    trainButton.setBackgroundColor(PRIMARY_COLOR)
+    viewWorkoutsButton.setBackgroundColor(PRIMARY_COLOR)
+  }
+  
+  @IBAction func startWorkout()
+  {
+    WKInterfaceController.reloadRootControllers([(name: "Workout", context: [])])
     
-    override func awakeWithContext(context: AnyObject?) {
-        
-    }
-    
-    @IBAction func startWorkout()
-    {
-        WKInterfaceController.reloadRootControllers([(name: "Workout", context: [])])
-        
-    }
-    
-    @IBAction func viewWorkouts() {
-        
-    }
+  }
+  
+  @IBAction func viewWorkouts() {
 
     
-
-    
-    
+  }
+  
+  
+  
+  
+  
 }

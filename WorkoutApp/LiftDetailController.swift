@@ -57,6 +57,7 @@ class LiftDetailController: UIViewController, UITextFieldDelegate
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
         return true
     }
 }

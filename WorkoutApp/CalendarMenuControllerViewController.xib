@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CalendarMenuControllerViewController" customModule="WorkoutApp" customModuleProvider="target">
+            <connections>
+                <outlet property="tableView" destination="v15-sg-MQ3" id="uPG-ts-WMd"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="358" height="173"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select the workout to view" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MA8-pa-3Cb">
+                    <rect key="frame" x="78" y="8" width="202.5" height="20.5"/>
+                    <animations/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="v15-sg-MQ3">
+                    <rect key="frame" x="0.0" y="36.5" width="358" height="136.5"/>
+                    <animations/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="r3s-mG-TyT"/>
+                        <outlet property="delegate" destination="-1" id="7Fa-ap-6mb"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <animations/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="v15-sg-MQ3" secondAttribute="trailing" id="00V-vT-eAw"/>
+                <constraint firstItem="v15-sg-MQ3" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="6jw-ql-m6u"/>
+                <constraint firstItem="v15-sg-MQ3" firstAttribute="top" secondItem="MA8-pa-3Cb" secondAttribute="bottom" constant="8" id="GwW-my-mP0"/>
+                <constraint firstItem="MA8-pa-3Cb" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="8" id="NCO-bx-3nM"/>
+                <constraint firstAttribute="bottom" secondItem="v15-sg-MQ3" secondAttribute="bottom" id="iGr-M4-wxS"/>
+                <constraint firstItem="MA8-pa-3Cb" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="zVX-FS-cN2"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="308" y="467.5"/>
+        </view>
+    </objects>
+</document>

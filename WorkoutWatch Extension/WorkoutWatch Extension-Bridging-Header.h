@@ -7,3 +7,4 @@
 #import "focusmotion/sdk-objc/movementanalyzer.h"
 #import "focusmotion/sdk-objc/analyzerresult.h"
 #import "focusmotion/sdk-objc/deviceoutput.h"
+#import "focusmotion/sdk-objc/analyzertrainer.h"
