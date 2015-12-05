@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="editSetCell" id="KGk-i7-Jjw" customClass="EditLiftCell" customModule="WorkoutApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="59.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set #" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EdD-ki-I2F">
+                        <rect key="frame" x="15" y="4.5" width="64" height="50.5"/>
+                        <animations/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Reps" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lQN-de-iBn" customClass="YoshikoTextField" customModule="TextFieldEffects">
+                        <rect key="frame" x="128" y="-3.5" width="64" height="50.5"/>
+                        <animations/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="50" id="ROS-yb-xeT"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="decimalPad" keyboardAppearance="alert" returnKeyType="next"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="activeBorderColor">
+                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="inactiveBorderColor">
+                                <color key="value" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="activeBackgroundColor">
+                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="borderSize">
+                                <real key="value" value="0.0"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                        <connections>
+                            <outlet property="delegate" destination="-1" id="VXM-iv-tsC"/>
+                        </connections>
+                    </textField>
+                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Weight" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LFO-a2-4S9" customClass="YoshikoTextField" customModule="TextFieldEffects">
+                        <rect key="frame" x="248" y="-3.5" width="64" height="50.5"/>
+                        <animations/>
+                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="decimalPad" keyboardAppearance="alert" returnKeyType="done"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="activeBorderColor">
+                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="inactiveBorderColor">
+                                <color key="value" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="activeBackgroundColor">
+                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                        <connections>
+                            <outlet property="delegate" destination="-1" id="tot-pK-hNP"/>
+                        </connections>
+                    </textField>
+                </subviews>
+                <animations/>
+                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                <constraints>
+                    <constraint firstItem="lQN-de-iBn" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="9rY-QE-gAa"/>
+                    <constraint firstItem="lQN-de-iBn" firstAttribute="height" secondItem="EdD-ki-I2F" secondAttribute="height" id="NPC-GY-g6o"/>
+                    <constraint firstItem="EdD-ki-I2F" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="7" id="Ofr-xZ-2RJ"/>
+                    <constraint firstItem="EdD-ki-I2F" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Rdm-cI-4TL"/>
+                    <constraint firstItem="LFO-a2-4S9" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="mCC-W1-0RT"/>
+                    <constraint firstItem="LFO-a2-4S9" firstAttribute="height" secondItem="EdD-ki-I2F" secondAttribute="height" id="nsQ-cF-QYK"/>
+                    <constraint firstItem="lQN-de-iBn" firstAttribute="width" secondItem="EdD-ki-I2F" secondAttribute="width" id="phd-Ui-LgH"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="LFO-a2-4S9" secondAttribute="trailing" id="uck-Rh-RLu"/>
+                    <constraint firstItem="lQN-de-iBn" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="yE8-6Q-4gD"/>
+                    <constraint firstItem="LFO-a2-4S9" firstAttribute="width" secondItem="EdD-ki-I2F" secondAttribute="width" id="z3c-wD-c9O"/>
+                </constraints>
+            </tableViewCellContentView>
+            <animations/>
+            <connections>
+                <outlet property="repsField" destination="lQN-de-iBn" id="LJ3-oc-bNs"/>
+                <outlet property="setLabel" destination="EdD-ki-I2F" id="LQy-ft-Df9"/>
+                <outlet property="weightField" destination="LFO-a2-4S9" id="4F1-Vg-K6f"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>

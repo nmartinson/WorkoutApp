@@ -10,10 +10,31 @@ import Foundation
 import CoreData
 import UIKit
 
+public func ==(lhs: NSDate, rhs: NSDate) -> Bool {
+  return lhs === rhs || lhs.compare(rhs) == .OrderedSame
+}
+
+public func <(lhs: NSDate, rhs: NSDate) -> Bool {
+  return lhs.compare(rhs) == .OrderedAscending
+}
+
+extension NSDate: Comparable { }
+
 class CDSessionHelper
 {
+  let appDel = (UIApplication.sharedApplication().delegate as! AppDelegate)
   let managedObject = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
   
+  func createSession(date: NSDate) -> SessionEntity {
+    let session = NSEntityDescription.insertNewObjectForEntityForName("SessionEntity", inManagedObjectContext: managedObject) as! SessionEntity
+    session.date = date
+    return session
+  }
+  
+  func deleteSession(session: SessionEntity) {
+		managedObject.deleteObject(session)
+		appDel.saveContext()
+  }
   
   /****************************************************************************
    *
@@ -93,19 +114,22 @@ class CDSessionHelper
    *****************************************************************************/
   func getSession(sessionId: NSManagedObjectID) -> (SessionEntity?,[[SetEntity]]?)
   {
+
     do{
       var setsArray:[[SetEntity]]? = []
       let session = try managedObject.existingObjectWithID(sessionId) as! SessionEntity
-      
+      print(session.overView)
       let overViewArr = session.overView!.characters.split{$0 == ","}.map(String.init)
       for lift:String in overViewArr
       {
         let predicate = NSPredicate(format: "%K == %@", "movementType", lift)
         let liftArray = (session.sets?.filteredSetUsingPredicate(predicate) as! Set<SetEntity>)
-        let arr = Array(liftArray)
+        
+        var arr = Array(liftArray)
+        arr = arr.sort({ $0.date! < $1.date })
         setsArray!.append(arr)
       }
-      
+		
       return (session, setsArray)
     }catch
     {

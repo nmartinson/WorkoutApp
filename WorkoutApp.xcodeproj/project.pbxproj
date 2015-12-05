@@ -32,6 +32,8 @@
 		017171B01C060071005E917F /* CalendarMenuControllerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 017171AE1C060071005E917F /* CalendarMenuControllerViewController.xib */; };
 		017171B41C0B7D6F005E917F /* LiftDataCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 017171B31C0B7D6F005E917F /* LiftDataCell.xib */; };
 		017171B61C0B7E60005E917F /* LiftDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017171B51C0B7E60005E917F /* LiftDataCell.swift */; };
+		017171BA1C0BB118005E917F /* AddLiftQuick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017171B81C0BB118005E917F /* AddLiftQuick.swift */; };
+		017171BB1C0BB118005E917F /* AddLiftQuick.xib in Resources */ = {isa = PBXBuildFile; fileRef = 017171B91C0BB118005E917F /* AddLiftQuick.xib */; };
 		018120541BCB1164003C305C /* focusmotion-applewatch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 018120521BCB1164003C305C /* focusmotion-applewatch.framework */; };
 		018120551BCB1164003C305C /* focusmotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 018120531BCB1164003C305C /* focusmotion.framework */; };
 		018660BA1BC48B7200EA068A /* LiftHistoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018660B91BC48B7200EA068A /* LiftHistoryController.swift */; };
@@ -41,6 +43,10 @@
 		0191D7891BC5FE2D00099A98 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0191D7881BC5FE2D00099A98 /* Assets.xcassets */; };
 		0191D78D1BC5FE2D00099A98 /* WorkoutWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 0191D7731BC5FE2D00099A98 /* WorkoutWatch.app */; };
 		019522871BBF44BA00C922D5 /* CDSetHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019522861BBF44BA00C922D5 /* CDSetHelper.swift */; };
+		019C6D1B1C0F9B0800D03E0B /* SessionMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019C6D191C0F9B0800D03E0B /* SessionMenu.swift */; };
+		019C6D1C1C0F9B0800D03E0B /* SessionMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 019C6D1A1C0F9B0800D03E0B /* SessionMenu.xib */; };
+		019C6D201C108A9900D03E0B /* EditLiftCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019C6D1E1C108A9900D03E0B /* EditLiftCell.swift */; };
+		019C6D211C108A9900D03E0B /* EditLiftCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 019C6D1F1C108A9900D03E0B /* EditLiftCell.xib */; };
 		01AFDF1C1BFE540200A1D5BB /* data in Resources */ = {isa = PBXBuildFile; fileRef = 01AFDF1B1BFE53A300A1D5BB /* data */; };
 		01B4F7B61BDB1254003A01EE /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01B4F7B51BDB1254003A01EE /* HealthKit.framework */; };
 		01B74D4B1BC010AF008B54AB /* CDSessionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B74D4A1BC010AF008B54AB /* CDSessionHelper.swift */; };
@@ -152,6 +158,8 @@
 		017171AE1C060071005E917F /* CalendarMenuControllerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CalendarMenuControllerViewController.xib; sourceTree = "<group>"; };
 		017171B31C0B7D6F005E917F /* LiftDataCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LiftDataCell.xib; sourceTree = "<group>"; };
 		017171B51C0B7E60005E917F /* LiftDataCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiftDataCell.swift; sourceTree = "<group>"; };
+		017171B81C0BB118005E917F /* AddLiftQuick.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddLiftQuick.swift; sourceTree = "<group>"; };
+		017171B91C0BB118005E917F /* AddLiftQuick.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddLiftQuick.xib; sourceTree = "<group>"; };
 		018120521BCB1164003C305C /* focusmotion-applewatch.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = "focusmotion-applewatch.framework"; sourceTree = "<group>"; };
 		018120531BCB1164003C305C /* focusmotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = focusmotion.framework; sourceTree = "<group>"; };
 		018660B91BC48B7200EA068A /* LiftHistoryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiftHistoryController.swift; sourceTree = "<group>"; };
@@ -167,6 +175,10 @@
 		0191D7981BC5FEDC00099A98 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS2.0.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
 		0191D79A1BC5FEE500099A98 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "Platforms/WatchOS.platform/Developer/SDKs/WatchOS2.0.sdk/usr/lib/libc++.tbd"; sourceTree = DEVELOPER_DIR; };
 		019522861BBF44BA00C922D5 /* CDSetHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDSetHelper.swift; sourceTree = "<group>"; };
+		019C6D191C0F9B0800D03E0B /* SessionMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionMenu.swift; sourceTree = "<group>"; };
+		019C6D1A1C0F9B0800D03E0B /* SessionMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SessionMenu.xib; sourceTree = "<group>"; };
+		019C6D1E1C108A9900D03E0B /* EditLiftCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditLiftCell.swift; sourceTree = "<group>"; };
+		019C6D1F1C108A9900D03E0B /* EditLiftCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditLiftCell.xib; sourceTree = "<group>"; };
 		01AFDF1B1BFE53A300A1D5BB /* data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = data; sourceTree = "<group>"; };
 		01B4F7B51BDB1254003A01EE /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		01B74D4A1BC010AF008B54AB /* CDSessionHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDSessionHelper.swift; sourceTree = "<group>"; };
@@ -268,6 +280,24 @@
 			name = Calendar;
 			sourceTree = "<group>";
 		};
+		017171B71C0BA961005E917F /* Add Lift */ = {
+			isa = PBXGroup;
+			children = (
+				017171B31C0B7D6F005E917F /* LiftDataCell.xib */,
+				017171B51C0B7E60005E917F /* LiftDataCell.swift */,
+			);
+			name = "Add Lift";
+			sourceTree = "<group>";
+		};
+		017171C01C0BB148005E917F /* Add Lift Quick */ = {
+			isa = PBXGroup;
+			children = (
+				017171B81C0BB118005E917F /* AddLiftQuick.swift */,
+				017171B91C0BB118005E917F /* AddLiftQuick.xib */,
+			);
+			name = "Add Lift Quick";
+			sourceTree = "<group>";
+		};
 		018660B71BC486AB00EA068A /* Session */ = {
 			isa = PBXGroup;
 			children = (
@@ -317,6 +347,24 @@
 			path = "WorkoutWatch Extension";
 			sourceTree = "<group>";
 		};
+		019C6D1D1C0FB12500D03E0B /* Session Menu */ = {
+			isa = PBXGroup;
+			children = (
+				019C6D191C0F9B0800D03E0B /* SessionMenu.swift */,
+				019C6D1A1C0F9B0800D03E0B /* SessionMenu.xib */,
+			);
+			name = "Session Menu";
+			sourceTree = "<group>";
+		};
+		019C6D221C108AA400D03E0B /* Edit Lift Cell */ = {
+			isa = PBXGroup;
+			children = (
+				019C6D1E1C108A9900D03E0B /* EditLiftCell.swift */,
+				019C6D1F1C108A9900D03E0B /* EditLiftCell.xib */,
+			);
+			name = "Edit Lift Cell";
+			sourceTree = "<group>";
+		};
 		01D1022D1BBE11B400E8B7A7 = {
 			isa = PBXGroup;
 			children = (
@@ -348,9 +396,11 @@
 				01D102561BBE16D500E8B7A7 /* CoreData */,
 				01624CB91BC2B130003C86D1 /* HomeController */,
 				017171B21C063D6A005E917F /* Calendar */,
+				017171B71C0BA961005E917F /* Add Lift */,
+				017171C01C0BB148005E917F /* Add Lift Quick */,
+				019C6D221C108AA400D03E0B /* Edit Lift Cell */,
+				019C6D1D1C0FB12500D03E0B /* Session Menu */,
 				01D102391BBE11B400E8B7A7 /* AppDelegate.swift */,
-				017171B31C0B7D6F005E917F /* LiftDataCell.xib */,
-				017171B51C0B7E60005E917F /* LiftDataCell.swift */,
 				013B7D9C1BE3C6A900E526E6 /* Constants.swift */,
 				01D1023B1BBE11B400E8B7A7 /* LiftFrequencyController.swift */,
 				01D102571BBEBD0700E8B7A7 /* CreateChartDataHelper.swift */,
@@ -568,10 +618,13 @@
 			files = (
 				01624CB61BC2B09C003C86D1 /* HomeCollectionCell.xib in Resources */,
 				01D102471BBE11B400E8B7A7 /* LaunchScreen.storyboard in Resources */,
+				019C6D1C1C0F9B0800D03E0B /* SessionMenu.xib in Resources */,
 				01F7D21E1BFBE88E00371706 /* EmptyDataView.xib in Resources */,
 				017171B41C0B7D6F005E917F /* LiftDataCell.xib in Resources */,
 				017171B01C060071005E917F /* CalendarMenuControllerViewController.xib in Resources */,
+				019C6D211C108A9900D03E0B /* EditLiftCell.xib in Resources */,
 				01D102441BBE11B400E8B7A7 /* Assets.xcassets in Resources */,
+				017171BB1C0BB118005E917F /* AddLiftQuick.xib in Resources */,
 				01D1023F1BBE11B400E8B7A7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -649,6 +702,7 @@
 			files = (
 				01D102531BBE163800E8B7A7 /* Session.swift in Sources */,
 				01D102521BBE163800E8B7A7 /* Session+CoreDataProperties.swift in Sources */,
+				019C6D201C108A9900D03E0B /* EditLiftCell.swift in Sources */,
 				01D102541BBE163800E8B7A7 /* Set+CoreDataProperties.swift in Sources */,
 				01624CB01BC1EBD6003C86D1 /* SessionsTableViewController.swift in Sources */,
 				01D102551BBE163800E8B7A7 /* Set.swift in Sources */,
@@ -656,6 +710,7 @@
 				01D1023C1BBE11B400E8B7A7 /* LiftFrequencyController.swift in Sources */,
 				01624CB81BC2B114003C86D1 /* HomeCollectionCell.swift in Sources */,
 				0127717C1BC555BA001AA893 /* LiftHistoryTableViewController.swift in Sources */,
+				019C6D1B1C0F9B0800D03E0B /* SessionMenu.swift in Sources */,
 				013B7D9F1BE42A1500E526E6 /* BalloonMarker.swift in Sources */,
 				01EC81E91BF230D7000D1F81 /* TrainerController.swift in Sources */,
 				01624CB41BC2AE2F003C86D1 /* HomeController.swift in Sources */,
@@ -667,6 +722,7 @@
 				01624CB21BC1F070003C86D1 /* SessionTableViewController.swift in Sources */,
 				01EF0BE61C04AEB9001F8A2E /* Movements.swift in Sources */,
 				01D102581BBEBD0700E8B7A7 /* CreateChartDataHelper.swift in Sources */,
+				017171BA1C0BB118005E917F /* AddLiftQuick.swift in Sources */,
 				013B7DA11BE4316400E526E6 /* LiftFrequencyCell.swift in Sources */,
 				01D1023A1BBE11B400E8B7A7 /* AppDelegate.swift in Sources */,
 				01EF0BE91C04AEF0001F8A2E /* CDMovementHelper.swift in Sources */,

@@ -40,18 +40,38 @@ class CalendarController: UIViewController
   
   var touchLocation:CGPoint?
   var sessions:[SessionEntity] = []
-  var selectedIndex = 0
+  var selectedIndex:Int? = 0
   var workoutsPerDay = 0
+  var selectedDate:NSDate?
+  var skipViewDidAppear = true
   var menu:CalendarMenuControllerViewController?
   
   override func viewDidLoad() {
-    self.sessions = CDSessionHelper().getSessions()
     self.view.backgroundColor = PRIMARY_COLOR
+    self.navigationItem.leftBarButtonItem = UIBarButtonItem(image:BACK_IMG, style:.Plain, target:self, action:"backButtonPressed:")
+    skipViewDidAppear = true
+    selectedDate = NSDate()
+		configureCalendar()
+  }
+  
+  override func viewDidAppear(animated: Bool) {
+    if !skipViewDidAppear {
+      configureCalendar()
+    }
+    skipViewDidAppear = false
+  }
+  
+  func backButtonPressed(sender:UIButton) {
+    navigationController?.popViewControllerAnimated(true)
+  }
+  
+  func configureCalendar() {
+    self.sessions = CDSessionHelper().getSessions()
     calendar.backgroundColor = PRIMARY_COLOR
     calendar.scrollDirection = .Vertical
     calendar.appearance.caseOptions = [.HeaderUsesUpperCase,.WeekdayUsesUpperCase]
-    calendar.selectDate(NSDate())
-    
+    calendar.selectDate(selectedDate)
+    calendar.reloadData()
   }
   
   @IBAction func goToToday(sender: AnyObject) {
@@ -62,14 +82,17 @@ class CalendarController: UIViewController
   {
     if segue.identifier == "toSession" {
       let vc = segue.destinationViewController as! SessionTableViewController
-      vc.sessionId = sessions[selectedIndex].objectID
+      vc.selectedDate = selectedDate!
+      if let selectedIndex = selectedIndex {
+	      vc.sessionId = sessions[selectedIndex].objectID
+      }
     }
   }
   
   func showMultipleWorkoutsView(){
     menu = CalendarMenuControllerViewController()
     menu!.delegate = self
-    let sessionsToSend = Array(sessions[selectedIndex..<selectedIndex + workoutsPerDay])
+    let sessionsToSend = Array(sessions[selectedIndex!..<selectedIndex! + workoutsPerDay])
     menu!.modalPresentationStyle = .Popover
     menu!.preferredContentSize = CGSize(width: 300, height: 110)
     
@@ -132,25 +155,28 @@ extension CalendarController: FSCalendarDelegate
   }
   
   func calendar(calendar: FSCalendar!, didSelectDate date: NSDate!) {
-		print("regualr did select")
+    
   }
   
   func calendar(calendar: FSCalendar!, didSelectDate date: NSDate!, locationFrame: CGRect) {
     workoutsPerDay = 0
+    selectedDate = date
     let x = locationFrame.origin.x
     let y = locationFrame.origin.y % 1000
-    print(y)
     touchLocation = CGPoint(x: x, y: y)
     
     for (index, session) in sessions.enumerate() where session.date!.fs_dateByIgnoringTimeComponents == date.fs_dateByIgnoringTimeComponents{
       workoutsPerDay++
       selectedIndex = index
     }
-    
-    if workoutsPerDay == 1 {
+
+    if workoutsPerDay == 0 {
+      selectedIndex = nil
+      performSegueWithIdentifier("toSession", sender: self)
+    } else if workoutsPerDay == 1 {
       performSegueWithIdentifier("toSession", sender: self)
     } else if workoutsPerDay > 1 {
-      selectedIndex = selectedIndex - workoutsPerDay + 1
+      selectedIndex = selectedIndex! - workoutsPerDay + 1
       showMultipleWorkoutsView()
     }
   }

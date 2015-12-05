@@ -244,7 +244,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var overViewSet = Set<String>()
     let session = NSEntityDescription.insertNewObjectForEntityForName("SessionEntity", inManagedObjectContext: managedObjectContext) as! SessionEntity
     session.duration = 3600
-    session.date = NSDate(dateString:"2015-09-06")
+    session.date = NSDate(dateString:"2015-11-06")
     
     let set1 = NSEntityDescription.insertNewObjectForEntityForName("SetEntity", inManagedObjectContext: managedObjectContext) as! SetEntity
     set1.duration = 45
@@ -341,7 +341,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var overview2 = Set<String>()
     let session2 = NSEntityDescription.insertNewObjectForEntityForName("SessionEntity", inManagedObjectContext: managedObjectContext) as! SessionEntity
     session2.duration = 3600
-    session2.date = NSDate(dateString:"2015-09-10")
+    session2.date = NSDate(dateString:"2015-11-10")
     //        session.sets =
     
     let set1s = NSEntityDescription.insertNewObjectForEntityForName("SetEntity", inManagedObjectContext: managedObjectContext) as! SetEntity
