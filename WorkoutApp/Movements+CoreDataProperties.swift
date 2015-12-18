@@ -2,7 +2,7 @@
 //  Movements+CoreDataProperties.swift
 //  WorkoutApp
 //
-//  Created by Nick on 11/24/15.
+//  Created by Nick on 12/6/15.
 //  Copyright © 2015 Nick. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -13,9 +13,16 @@ import Foundation
 import CoreData
 
 extension MovementsEntity {
-
-    @NSManaged var movementName: String?
-    @NSManaged var isFocusMotionDefault: NSNumber?
-    @NSManaged var isAppDefault: NSNumber?
-
+  
+  @NSManaged var isAppDefault: NSNumber?
+  @NSManaged var isFocusMotionDefault: NSNumber?
+  @NSManaged var movementName: String?
+  @NSManaged var movementGuide: String?
+  @NSManaged var primaryMuscle: String?
+  @NSManaged var secondaryMuscle: String?
+  @NSManaged var startImage: String?
+  @NSManaged var endImage: String?
+  @NSManaged var type: String?
+  @NSManaged var muscleGroup: String?
+  
 }

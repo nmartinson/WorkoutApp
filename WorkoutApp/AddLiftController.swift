@@ -11,8 +11,122 @@ import UIKit
 import TextFieldEffects
 import CoreData
 
+
+protocol LiftDelegate
+{
+  func didSaveSet(sessionId:NSManagedObjectID)
+  func didDeleteSession()
+  func didCancel()
+}
+
 /****************************************************************************
  *
+ *****************************************************************************/
+class AddLiftController: UIViewController
+{
+  @IBOutlet weak var liftNameTrailingConstraint: NSLayoutConstraint!
+  @IBOutlet weak var cancelSearchButton: UIButton!
+  @IBOutlet weak var liftNameField: YoshikoTextField!
+  @IBOutlet weak var repField: YoshikoTextField!
+  @IBOutlet weak var weightField: YoshikoTextField!
+  @IBOutlet weak var tableViewSearchResults: UITableView!
+  @IBOutlet weak var tableViewSets: UITableView!
+  @IBOutlet weak var repWeightStack: UIStackView!
+  
+  var session:SessionEntity?
+  var isSearching = false
+  var movements:[String] = []
+  var filteredMovements = []
+  var allLifts: [MovementsEntity]?
+  var date:NSDate?
+  var delegate:LiftDelegate?
+  var setsToCreate:[SetEntity] = []
+  
+  enum InputError: ErrorType {
+    case InputMissing
+  }
+  
+  override func viewDidLoad() {
+    movements = CDMovementHelper().getMovementNames()
+    setsToCreate.removeAll()
+  }
+  
+  @IBAction func createSetPressed(sender: AnyObject) {
+    guard let weight = Double(weightField.text!), let repCount = Int(repField.text!), let movement = liftNameField.text else { return }
+    let set = CDSetHelper().addTemporarySet(weight, repCount: repCount, movement: movement)
+    setsToCreate.append(set)
+    tableViewSets.reloadData()
+  }
+  
+  @IBAction func cancelPressed(sender: AnyObject) {
+    delegate?.didCancel()
+    dismissViewControllerAnimated(true, completion: nil)
+  }
+  
+  @IBAction func savePressed(sender: AnyObject) {
+    guard let weight = Double(weightField.text!), let repCount = Int(repField.text!), let movement = liftNameField.text else { return }
+    
+    if session == nil {
+      session = CDSessionHelper().createSession(date!)
+      // if they didn't add the set first and just pressed save
+      if setsToCreate.isEmpty {
+        CDSetHelper().addSet(session!, weight: weight, repCount: repCount, movement: movement)
+        delegate?.didSaveSet(session!.objectID)
+        dismissViewControllerAnimated(true, completion: nil)
+      } else {
+        do {
+          try saveSets()
+          delegate?.didSaveSet(session!.objectID)
+          dismissViewControllerAnimated(true, completion: nil)
+        } catch InputError.InputMissing {
+          showAlertForEmptryFields()
+        } catch { }
+      }
+    } else {
+      do {
+        try saveSets()
+        delegate?.didSaveSet(session!.objectID)
+        dismissViewControllerAnimated(true, completion: nil)
+      } catch InputError.InputMissing {
+        showAlertForEmptryFields()
+      } catch { }
+    }
+  }
+  
+  
+  func saveSets() throws -> AnyObject? {
+    guard let movement = liftNameField.text else { throw InputError.InputMissing }
+    for row in 0..<setsToCreate.count {
+      let indexPath = NSIndexPath(forRow: row, inSection: 0)
+      let cell = tableViewSets.cellForRowAtIndexPath(indexPath) as! EditLiftCell
+      guard let weight = Double(cell.weightField.text!), let repCount = Int(cell.repsField.text!) else {
+        throw InputError.InputMissing
+      }
+      CDSetHelper().addSet(session!, weight: weight, repCount: repCount, movement: movement)
+    }
+    CDMovementHelper().addMovementName(movement)
+    return nil
+  }
+  
+  @IBAction func cancelSearchPressed(sender: AnyObject) {
+    liftNameField.resignFirstResponder()
+    UIView.animateWithDuration(1) {
+      self.cancelSearchButton.hidden = true
+      self.liftNameTrailingConstraint.constant = 0
+      self.tableViewSearchResults.hidden = true
+    }
+  }
+  
+  func showAlertForEmptryFields(){
+    let alert = UIAlertController(title: "Woah there!", message: "Make sure not to leave any rep or weight blank", preferredStyle: .Alert)
+    alert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
+    presentViewController(alert, animated: true, completion: nil)
+  }
+  
+}
+
+/****************************************************************************
+ *	TableView Datasource
  *****************************************************************************/
 extension AddLiftController: UITableViewDataSource
 {
@@ -31,7 +145,7 @@ extension AddLiftController: UITableViewDataSource
         tableView.registerNib(UINib(nibName: "EditLiftCell", bundle: nil), forCellReuseIdentifier: "editSetCell")
       }
       cell = tableView.dequeueReusableCellWithIdentifier("editSetCell")
-
+      
       (cell as! EditLiftCell).setLabel.text = "Set \(indexPath.row + 1)"
       (cell as! EditLiftCell).weightField.text = setsToCreate[indexPath.row].weight!.stringValue
       (cell as! EditLiftCell).repsField.text = setsToCreate[indexPath.row].repCount!.stringValue
@@ -52,7 +166,7 @@ extension AddLiftController: UITableViewDataSource
   
   func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
     if tableView == tableViewSearchResults {
-			return 44
+      return 44
     } else {
       return 60
     }
@@ -63,7 +177,7 @@ extension AddLiftController: UITableViewDataSource
 }
 
 /****************************************************************************
- *
+ *	TableView Delegate
  *****************************************************************************/
 extension AddLiftController: UITableViewDelegate
 {
@@ -80,7 +194,7 @@ extension AddLiftController: UITableViewDelegate
 }
 
 /****************************************************************************
- *
+ *	TextField Delegate
  *****************************************************************************/
 extension AddLiftController: UITextFieldDelegate
 {
@@ -147,80 +261,4 @@ extension AddLiftController: UITextFieldDelegate
       cancelSearchButton.hidden = true
     }
   }
-}
-
-protocol AddLiftDelegate
-{
-  func didSaveSet(sessionId:NSManagedObjectID)
-}
-
-/****************************************************************************
- *
- *****************************************************************************/
-class AddLiftController: UIViewController
-{
-  @IBOutlet weak var liftNameTrailingConstraint: NSLayoutConstraint!
-  @IBOutlet weak var cancelSearchButton: UIButton!
-  @IBOutlet weak var liftNameField: YoshikoTextField!
-  @IBOutlet weak var repField: YoshikoTextField!
-  @IBOutlet weak var weightField: YoshikoTextField!
-  @IBOutlet weak var tableViewSearchResults: UITableView!
-  @IBOutlet weak var tableViewSets: UITableView!
-  
-  var session:SessionEntity?
-  var isSearching = false
-  var movements = ["Barbell Curls", "Dumbbell Curls", "Bench Press", "Squat", "Dead Lift", "Pull Up", "Push Up"]
-  var filteredMovements = []
-  var allLifts: [MovementsEntity]?
-  var date:NSDate?
-  var delegate:AddLiftDelegate?
-  var setsToCreate:[SetEntity] = []
-  
-  override func viewDidLoad() {
-    setsToCreate.removeAll()
-  }
-  
-  @IBAction func createSetPressed(sender: AnyObject) {
-    guard let weight = Double(weightField.text!), let repCount = Int(repField.text!), let movement = liftNameField.text else { return }
-		let set = CDSetHelper().addTemporarySet(weight, repCount: repCount, movement: movement)
-    setsToCreate.append(set)
-    tableViewSets.reloadData()
-  }
-  
-  @IBAction func cancelPressed(sender: AnyObject) {
-    dismissViewControllerAnimated(true, completion: nil)
-  }
-  
-  @IBAction func savePressed(sender: AnyObject) {
-    guard let weight = Double(weightField.text!), let repCount = Int(repField.text!), let movement = liftNameField.text else { return }
-
-    if session == nil {
-      session = CDSessionHelper().createSession(date!)
-      // if they didn't add the set first and just pressed save
-      if setsToCreate.isEmpty {
-        CDSetHelper().addSet(session!, weight: weight, repCount: repCount, movement: movement)
-      } else {
-        for set in setsToCreate {
-          CDSetHelper().addSet(session!, weight: set.weight!, repCount: set.repCount!, movement: set.movementType!)
-        }
-      }
-    } else {
-      for set in setsToCreate {
-        CDSetHelper().addSet(session!, weight: set.weight!, repCount: set.repCount!, movement: set.movementType!)
-      }
-    }
-    delegate?.didSaveSet(session!.objectID)
-    dismissViewControllerAnimated(true, completion: nil)
-    
-  }
-  
-  @IBAction func cancelSearchPressed(sender: AnyObject) {
-    liftNameField.resignFirstResponder()
-    UIView.animateWithDuration(1) {
-      self.cancelSearchButton.hidden = true
-      self.liftNameTrailingConstraint.constant = 0
-      self.tableViewSearchResults.hidden = true
-    }
-  }
-  
 }

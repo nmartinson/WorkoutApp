@@ -19,7 +19,36 @@ class SessionTableViewController: UIViewController
   var setsArray:[[SetEntity]]?
   var selectedDate:NSDate?
   var selectedIndexPath:NSIndexPath?
-  var emptySetView: UIView?
+  var emptySessionView: UIView?
+  var skipViewDidAppear = true
+  var selectedCellIndexPath:NSIndexPath?
+  var startTime = NSTimeInterval()
+  var timer = NSTimer()
+  var navTitleToggle = false
+
+  
+  func updateTime() {
+    let currentTime = NSDate.timeIntervalSinceReferenceDate()
+    //Find the difference between current time and start time.
+    var elapsedTime: NSTimeInterval = currentTime - startTime
+    //calculate the minutes in elapsed time.
+    let minutes = UInt8(elapsedTime / 60.0)
+    elapsedTime -= (NSTimeInterval(minutes) * 60)
+    //calculate the seconds in elapsed time.
+    let seconds = UInt8(elapsedTime)
+    elapsedTime -= NSTimeInterval(seconds)
+    //find out the fraction of milliseconds to be displayed.
+    let fraction = UInt8(elapsedTime * 100) / 10
+    //add the leading zero for minutes, seconds and millseconds and store them as string constants
+    let strMinutes = String(format: "%02d", minutes)
+    let strSeconds = String(format: "%02d", seconds)
+    let strFraction = String(format: "%01d", fraction)
+    //concatenate minuets, seconds and milliseconds as assign it to the UILabel
+    if navTitleToggle {
+    self.title = "\(strMinutes):\(strSeconds):\(strFraction)"
+    }
+  }
+  
   
   /****************************************************************************
    *
@@ -30,17 +59,58 @@ class SessionTableViewController: UIViewController
     self.navigationItem.leftBarButtonItem = UIBarButtonItem(image:BACK_IMG, style:.Plain, target:self, action:"backButtonPressed:")
     
     // Setup back button title for next view
-    let backButton = UIBarButtonItem(title: "Session", style: .Bordered, target: nil, action: nil)
+    let backButton = UIBarButtonItem(title: "Session", style: .Plain, target: nil, action: nil)
     self.navigationItem.backBarButtonItem = backButton
 
+    setNavBarDate()
+    skipViewDidAppear = true
+
+    configureView()
+    
+		addNavBarTapRecognizer()
+  }
+  
+  func navSingleTap() {
+    if navTitleToggle {
+			setNavBarDate()
+    } else {
+      
+    }
+    navTitleToggle = !navTitleToggle
+  }
+  
+  func setNavBarDate() {
     let formatter = NSDateFormatter()
     formatter.dateStyle = .LongStyle
     let dateString = formatter.stringFromDate(selectedDate!)
     self.title = dateString
-    configureView()
   }
   
-  func addWorkout() {
+  func addNavBarTapRecognizer() {
+    let navSingleTap = UITapGestureRecognizer(target: self, action: "navSingleTap")
+    navSingleTap.numberOfTapsRequired = 1
+    navigationController?.navigationBar.subviews[0].userInteractionEnabled = true
+    navigationController?.navigationBar.subviews[0].addGestureRecognizer(navSingleTap)
+  }
+  
+  func removeNavBarTapRecognizer() {
+    navigationController?.navigationBar.subviews[0].userInteractionEnabled = false
+  }
+  
+  /****************************************************************************
+   *
+   *****************************************************************************/
+  override func viewDidAppear(animated: Bool) {
+    if !skipViewDidAppear {
+      configureView()
+    }
+    skipViewDidAppear = false
+  }
+  
+  /****************************************************************************
+   *
+   *****************************************************************************/
+  func addLift() {
     let vc = self.storyboard?.instantiateViewControllerWithIdentifier("AddLiftView") as! AddLiftController
     vc.session = session
 		vc.date = selectedDate
@@ -48,24 +118,41 @@ class SessionTableViewController: UIViewController
     self.presentViewController(vc, animated: true, completion: nil)
   }
   
+  func editLift() {
+    let vc = self.storyboard?.instantiateViewControllerWithIdentifier("EditLiftView") as! EditLiftController
+    vc.session = session
+    vc.date = selectedDate
+    vc.delegate = self
+    vc.setsToEdit = setsArray![selectedIndexPath!.row]
+    self.presentViewController(vc, animated: true, completion: nil)
+  }
+  
   @IBAction func swipedRight(sender: AnyObject) {
     navigationController?.popViewControllerAnimated(true)
   }
   
+  /****************************************************************************
+   *
+   *****************************************************************************/
   func configureView() {
+
     // Empty Set handling
     if sessionId == nil {
-      self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "addWorkout")
-      emptySetView = NSBundle.mainBundle().loadNibNamed("EmptyDataView", owner: nil, options: nil)[0] as? UIView
-      emptySetView!.frame = view.frame
-      emptySetView!.backgroundColor = PRIMARY_COLOR
-      self.view.addSubview(emptySetView!)
+      self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "addLift")
+      emptySessionView = NSBundle.mainBundle().loadNibNamed("EmptySessionView", owner: nil, options: nil)[0] as? UIView
+      emptySessionView!.frame = view.frame
+      emptySessionView!.backgroundColor = PRIMARY_COLOR
+      (emptySessionView as! EmptySessionView).delegate = self
+      self.view.addSubview(emptySessionView!)
+      stopTimer()
+			setNavBarDate()
+      removeNavBarTapRecognizer()
     } else {
-      emptySetView?.hidden = true
-      emptySetView?.removeFromSuperview()
+      emptySessionView?.hidden = true
+      emptySessionView?.removeFromSuperview()
       self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "menu"), style: .Plain, target: self, action: "openMenu")
-
       (session, setsArray) = CDSessionHelper().getSession(sessionId!)
+
       myTableView.reloadData()
       if selectedIndexPath != nil {
         myTableView.deselectRowAtIndexPath(selectedIndexPath!, animated: true)
@@ -73,12 +160,32 @@ class SessionTableViewController: UIViewController
     }
   }
   
+  override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
+    if emptySessionView != nil {
+      emptySessionView?.frame = view.frame
+    }
+  }
+  
+  func stringFromTimeInterval(interval: NSTimeInterval) -> String {
+    let interval = Int(interval)
+    let seconds = interval % 60
+    let minutes = (interval / 60) % 60
+//    let hours = (interval / 3600)
+    return String(format: "%02d m %02d s",  minutes, seconds)
+  }
+  
+  /****************************************************************************
+   *
+   *****************************************************************************/
   func setViewAlpha(alpha: CGFloat) {
     UIView.animateWithDuration(0.3) {
       self.view.alpha = alpha
     }
   }
 
+  /****************************************************************************
+   *
+   *****************************************************************************/
   func backButtonPressed(sender:UIButton) {
     navigationController?.popViewControllerAnimated(true)
   }
@@ -88,11 +195,16 @@ class SessionTableViewController: UIViewController
    *****************************************************************************/
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
   {
-    if segue.identifier == "liftDetailSegue"
-    {
-      let vc = segue.destinationViewController as! LiftDetailController
-      vc.selectedSet = setsArray![selectedIndexPath!.row][selectedIndexPath!.section]
-    }
+    
+  }
+  
+  func stopTimer() {
+    timer.invalidate()
+  }
+  
+  func resetTimer() {
+    timer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: "updateTime", userInfo: nil, repeats: true)
+    startTime = NSDate.timeIntervalSinceReferenceDate()
   }
 }
 
@@ -102,15 +214,6 @@ class SessionTableViewController: UIViewController
  *****************************************************************************/
 extension SessionTableViewController: UITableViewDelegate
 {
-  /****************************************************************************
-   *
-   *****************************************************************************/
-  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
-  {
-//    selectedIndexPath = indexPath
-//    performSegueWithIdentifier("liftDetailSegue", sender: self)
-  }
-  
   func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
     if editingStyle == UITableViewCellEditingStyle.Delete {
       for set in setsArray![indexPath.row] {
@@ -124,7 +227,26 @@ extension SessionTableViewController: UITableViewDelegate
         configureView()
       }
       tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+      tableView.reloadData() // need to reload to update cell index paths
     }
+  }
+  
+  func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
+
+    if let selectedCellIndexPath = selectedCellIndexPath {
+      if selectedCellIndexPath == indexPath {
+        self.selectedCellIndexPath = nil
+      } else {
+        self.selectedCellIndexPath = indexPath
+      }
+    } else {
+      selectedCellIndexPath = indexPath
+    }
+    let cell = tableView.cellForRowAtIndexPath(indexPath) as! LiftDataCell
+    (cell as LiftDataCell).didSelect()
+
+    tableView.beginUpdates()
+    tableView.endUpdates()
   }
   
 }
@@ -143,22 +265,45 @@ extension SessionTableViewController: UITableViewDataSource
     if cell == nil {
       tableView.registerNib(UINib(nibName: "LiftDataCell", bundle: nil), forCellReuseIdentifier: "liftCell")
     }
+    
     cell = tableView.dequeueReusableCellWithIdentifier("liftCell") as? LiftDataCell
+    let (repCount, weight) = CDSetHelper().getPRforLift(setsArray![indexPath.row][0].movementType!)
+    
     cell!.delegate = self
     cell!.indexPath = indexPath
     cell!.liftName.text = setsArray![indexPath.row][0].movementType
-    
-    var setText = ""
-    
-    for (index, set) in setsArray![indexPath.row].enumerate() {
-      setText += "Set \(index + 1): \(set.repCount!) x \(set.weight!) lbs\n"
+    if (weight - floor(weight) > 0.000001) { // 0.000001 can be changed depending on the level of precision you need
+      cell!.currentPR.text = "\(repCount) x \(weight) lbs"
+    } else {
+      cell!.currentPR.text = "\(repCount) x \(Int(weight)) lbs"
     }
     
-    setText = setText.stringByPaddingToLength(setText.characters.count - 1, withString: "", startingAtIndex: 0)
-    cell!.setLabel.text = setText
+
+    // configure the set Stack
+    cell!.newPRStack.hidden = true
+    cell!.clearSetStack()
+    for (index, set) in setsArray![indexPath.row].enumerate() {
+      if set != setsArray![indexPath.row].last && setsArray![indexPath.row].count > 1{
+        let startDate = set.date
+        let endDate = setsArray![indexPath.row][index + 1].date
+        let restPeriod = endDate?.timeIntervalSinceDate(startDate!)
+        let restPeriodString = stringFromTimeInterval(restPeriod!)
+
+        cell!.addSetToStack(index + 1, repCount: Int(set.repCount!), weight: Double(set.weight!), rest: restPeriodString)
+      } else {
+          cell!.addSetToStack(index + 1, repCount: Int(set.repCount!), weight: Double(set.weight!), rest: nil)
+      }
+      
+      if let didSetPR = set.didSetPRBool{
+        if didSetPR == true { cell!.newPRStack.hidden = false }
+      }
+    }
+    
     cell!.insetView.layer.cornerRadius = 20
+    cell!.insetView.clipsToBounds = true
     cell!.backgroundColor = PRIMARY_COLOR
     
+    CDMovementHelper().getMuscleGroupForLift(setsArray![indexPath.row][0].movementType!)
     return cell!
   }
   
@@ -169,10 +314,23 @@ extension SessionTableViewController: UITableViewDataSource
     return setsArray != nil ? setsArray!.count : 0
   }
   
+  /****************************************************************************
+   *
+   *****************************************************************************/
   func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
     let sets = setsArray![indexPath.row].count
-    let linesHeight = sets * 21
-    let height = CGFloat(linesHeight + 80)
+    
+    // Expanded height
+    if let selectedCellIndexPath = selectedCellIndexPath {
+      if selectedCellIndexPath == indexPath {
+        let linesHeight = sets * 63
+        let height = CGFloat(linesHeight + 107)
+        return height
+      }
+    }
+
+    let linesHeight = sets * 20
+    let height = CGFloat(linesHeight + 107)
     return height
   }
   
@@ -184,6 +342,9 @@ extension SessionTableViewController: UITableViewDataSource
   }
 }
 
+/****************************************************************************
+ *
+ *****************************************************************************/
 extension SessionTableViewController
 {
   func openMenu() {
@@ -196,13 +357,10 @@ extension SessionTableViewController
     popoverView?.delegate = self
     popoverView?.sourceView = self.view
     menu.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
-
-//    UIView.animateWithDuration(2.0, animations: {
-//      navigationItem.rightBarButtonItem?.image.transform = CGAffineTransformMakeRotation((90 * CGFloat(M_PI)) / 90)
-//    })
     
     presentViewController(menu, animated: true, completion: nil)
     setViewAlpha(0.5)
+    removeNavBarTapRecognizer()
   }
 
 }
@@ -232,7 +390,14 @@ extension SessionTableViewController: LiftDataCellDelegate
 
     quickLiftView.liftName.text = setsArray![indexPath.row][0].movementType!
     quickLiftView.setSessionObject(session!)
-
+  }
+  
+  /****************************************************************************
+   *
+   *****************************************************************************/
+  func editLiftPressed(indexPath: NSIndexPath) {
+    selectedIndexPath = indexPath
+		editLift()
   }
 }
 
@@ -243,17 +408,14 @@ extension SessionTableViewController: AddLiftQuickDelegate
 {
   func didDismissPopover() {
     setViewAlpha(1)
+    addNavBarTapRecognizer()
   }
   
   func addedSet() {
     setViewAlpha(1)
     (session, setsArray) = CDSessionHelper().getSession(sessionId!)
 		myTableView.reloadData()
-  }
-  
-  func editLiftPressed(indexPath: NSIndexPath) {
-    selectedIndexPath = indexPath
-		performSegueWithIdentifier("liftDetailSegue", sender: self)
+    resetTimer()
   }
 }
 
@@ -270,6 +432,7 @@ extension SessionTableViewController: UIPopoverPresentationControllerDelegate
     UIView.animateWithDuration(0.3) {
       self.view.alpha = 1
     }
+    addNavBarTapRecognizer()
   }
 }
 
@@ -298,23 +461,39 @@ extension SessionTableViewController: SessionMenuDelegate
   func didSelectDeleteLift() {
 		myTableView.editing = true
     setViewAlpha(1)
-
   }
   
   func didSelectAddLift() {
-		addWorkout()
+		addLift()
     setViewAlpha(1)
-
   }
 }
 
 /**************************************************************************
  *
  ***************************************************************************/
-extension SessionTableViewController: AddLiftDelegate
+extension SessionTableViewController: LiftDelegate
 {
   func didSaveSet(sessionId:NSManagedObjectID) {
     self.sessionId = sessionId
+    skipViewDidAppear = true
     configureView()
+		resetTimer()
+  }
+  
+  func didDeleteSession() {
+    self.sessionId = nil
+    configureView()
+  }
+  
+  func didCancel() {
+    skipViewDidAppear = true
+  }
+}
+
+extension SessionTableViewController: EmptySessionDelegate
+{
+  func didPressAddSet() {
+    addLift()
   }
 }

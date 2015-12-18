@@ -30,7 +30,7 @@ class AddLiftQuick: UIViewController
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+    repsField.becomeFirstResponder()
     
     // Do any additional setup after loading the view.
   }

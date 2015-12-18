@@ -25,15 +25,28 @@ class CDSessionHelper
   let appDel = (UIApplication.sharedApplication().delegate as! AppDelegate)
   let managedObject = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
   
+  /****************************************************************************
+   *
+   *****************************************************************************/
   func createSession(date: NSDate) -> SessionEntity {
     let session = NSEntityDescription.insertNewObjectForEntityForName("SessionEntity", inManagedObjectContext: managedObject) as! SessionEntity
     session.date = date
     return session
   }
   
+  /****************************************************************************
+   *
+   *****************************************************************************/
   func deleteSession(session: SessionEntity) {
 		managedObject.deleteObject(session)
 		appDel.saveContext()
+  }
+  
+  /****************************************************************************
+   *
+   *****************************************************************************/
+  func deleteSessionTemporary(session: SessionEntity) {
+    managedObject.deleteObject(session)
   }
   
   /****************************************************************************
@@ -118,7 +131,6 @@ class CDSessionHelper
     do{
       var setsArray:[[SetEntity]]? = []
       let session = try managedObject.existingObjectWithID(sessionId) as! SessionEntity
-      print(session.overView)
       let overViewArr = session.overView!.characters.split{$0 == ","}.map(String.init)
       for lift:String in overViewArr
       {
@@ -170,6 +182,109 @@ class CDSessionHelper
       print("Fetch error: \(nserror)")
     }
     return (liftDictionary, sum)
+  }
+  
+  //	Fetch Session
+  //	Get Overview
+  //	for lift in overview - get muslce group
+  //	add lift to dict/ increment count
+  func getLiftFrequencyByMuscleGroup() -> Dictionary<String,(Dictionary<String,Int>?, Int)>
+  {
+    var muscleGroupDict = Dictionary<String,(Dictionary<String,Int>?, Int)>()
+    var coreDictionary = Dictionary<String,Int>()
+    var lowerDictionary = Dictionary<String,Int>()
+    var chestDictionary = Dictionary<String,Int>()
+    var shouldersDictionary = Dictionary<String,Int>()
+    var armsDictionary = Dictionary<String,Int>()
+    var backDictionary = Dictionary<String,Int>()
+		var groupBreakdownDict = Dictionary<String, Int>()
+    var groupBreakdownSum = 0
+    var coreSum = 0
+    var lowerSum = 0
+    var shouldersSum = 0
+    var chestSum = 0
+    var armSum = 0
+    var backSum = 0
+    let request = NSFetchRequest(entityName: "SessionEntity")
+    
+    do {
+      let results = try managedObject.executeFetchRequest(request) as! [SessionEntity]
+      for result:SessionEntity in results
+      {
+        let overViewArr = result.overView!.characters.split{$0 == ","}.map(String.init)
+        for lift:String in overViewArr
+        {
+          if let muscleGroup = CDMovementHelper().getMuscleGroupForLift(lift){
+            if let val = groupBreakdownDict[muscleGroup] {
+                groupBreakdownDict[muscleGroup] = val + 1
+            } else {
+              groupBreakdownDict[muscleGroup] = 1
+            }
+            
+            switch muscleGroup
+            {
+             case MuscleGroup.Core.rawValue:
+              if let val = coreDictionary[lift] {
+                coreDictionary[lift] = val + 1
+              } else {
+                coreDictionary[lift] = 1
+              }
+             case MuscleGroup.Lower.rawValue:
+              if let val = lowerDictionary[lift] {
+                lowerDictionary[lift] = val + 1
+              } else {
+                lowerDictionary[lift] = 1
+              }
+             case MuscleGroup.Shoulders.rawValue:
+              if let val = shouldersDictionary[lift] {
+                shouldersDictionary[lift] = val + 1
+              } else {
+                shouldersDictionary[lift] = 1
+              }
+             case MuscleGroup.Chest.rawValue:
+              if let val = chestDictionary[lift] {
+                chestDictionary[lift] = val + 1
+              } else {
+                chestDictionary[lift] = 1
+              }
+             case MuscleGroup.Arms.rawValue:
+              if let val = armsDictionary[lift] {
+                armsDictionary[lift] = val + 1
+              } else {
+                armsDictionary[lift] = 1
+              }
+            case MuscleGroup.Back.rawValue:
+              if let val = backDictionary[lift] {
+                backDictionary[lift] = val + 1
+              } else {
+                backDictionary[lift] = 1
+              }
+             default:
+              print("")
+            }
+          }
+        }
+      }
+      coreSum = coreDictionary.values.reduce(0, combine: +)
+      lowerSum = lowerDictionary.values.reduce(0, combine: +)
+      shouldersSum = shouldersDictionary.values.reduce(0, combine: +)
+      chestSum = chestDictionary.values.reduce(0, combine: +)
+      armSum = armsDictionary.values.reduce(0, combine: +)
+      backSum = backDictionary.values.reduce(0, combine: +)
+      groupBreakdownSum = groupBreakdownDict.values.reduce(0, combine: +)
+      muscleGroupDict[MuscleGroup.Core.rawValue] = (coreDictionary, coreSum)
+      muscleGroupDict[MuscleGroup.Lower.rawValue] = (lowerDictionary, lowerSum)
+      muscleGroupDict[MuscleGroup.Shoulders.rawValue] = (shouldersDictionary, shouldersSum)
+      muscleGroupDict[MuscleGroup.Chest.rawValue] = (chestDictionary, chestSum)
+      muscleGroupDict[MuscleGroup.Arms.rawValue] = (armsDictionary, armSum)
+      muscleGroupDict[MuscleGroup.Back.rawValue] = (backDictionary, backSum)
+      muscleGroupDict[MuscleGroup.Groups.rawValue] = (groupBreakdownDict, groupBreakdownSum)
+
+    } catch {
+      let nserror = error as NSError
+      print("Fetch error: \(nserror)")
+    }
+    return muscleGroupDict
   }
   
   /****************************************************************************

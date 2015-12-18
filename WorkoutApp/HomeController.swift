@@ -125,6 +125,8 @@ class HomeController: UIViewController, UICollectionViewDataSource, UICollection
       (cell as! LiftHistoryCell).chart.animate(xAxisDuration: 2.0, yAxisDuration: 2.0)
     case 3:
       cell = collectionView.dequeueReusableCellWithReuseIdentifier("TrainerCell", forIndexPath: indexPath)
+    case 4:
+      cell = collectionView.dequeueReusableCellWithReuseIdentifier("MovementsCell", forIndexPath: indexPath)
     default:
       print("Error")
     }
@@ -137,7 +139,7 @@ class HomeController: UIViewController, UICollectionViewDataSource, UICollection
    *
    ***************************************************************************/
   func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return 4
+    return 5
   }
   
   /**************************************************************************

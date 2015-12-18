@@ -1,18 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9057" systemVersion="15A284" minimumToolsVersion="Automatic">
     <entity name="MovementsEntity" representedClassName=".Movements" syncable="YES">
+        <attribute name="endImage" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="isAppDefault" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="isFocusMotionDefault" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="movementGuide" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="movementName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="primaryMuscle" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="secondaryMuscle" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="startImage" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="SessionEntity" representedClassName=".SessionEntity" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="duration" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="overView" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="sets" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SetEntity" inverseName="session" inverseEntity="SetEntity" syncable="YES"/>
+        <relationship name="sets" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="SetEntity" inverseName="session" inverseEntity="SetEntity" syncable="YES"/>
     </entity>
     <entity name="SetEntity" representedClassName=".SetEntity" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="didSetPR" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="duration" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="internalVariation" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="maxRepTime" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
@@ -24,8 +31,8 @@
         <relationship name="session" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SessionEntity" inverseName="sets" inverseEntity="SessionEntity" syncable="YES"/>
     </entity>
     <elements>
-        <element name="MovementsEntity" positionX="-54" positionY="90" width="128" height="90"/>
+        <element name="MovementsEntity" positionX="-54" positionY="90" width="128" height="180"/>
         <element name="SessionEntity" positionX="-63" positionY="-18" width="128" height="105"/>
-        <element name="SetEntity" positionX="-45" positionY="36" width="128" height="195"/>
+        <element name="SetEntity" positionX="-45" positionY="36" width="128" height="210"/>
     </elements>
 </model>

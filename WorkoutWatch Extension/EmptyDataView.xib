@@ -11,34 +11,38 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dumbbell" translatesAutoresizingMaskIntoConstraints="NO" id="YpH-C0-Vnm">
-                    <rect key="frame" x="225" y="225" width="150" height="150"/>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="YLf-AF-Vvc">
+                    <rect key="frame" x="25" y="179" width="550" height="243"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dumbbell" translatesAutoresizingMaskIntoConstraints="NO" id="YpH-C0-Vnm">
+                            <rect key="frame" x="200" y="0.0" width="150" height="150"/>
+                            <animations/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="150" id="LYS-0o-Zmu"/>
+                                <constraint firstAttribute="width" constant="150" id="QqC-ww-m15"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Go workout so you have some awesome stats to be proud of!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jjv-5q-dlS">
+                            <rect key="frame" x="42" y="150" width="466" height="93"/>
+                            <animations/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="93" id="ae4-Om-lGg"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
                     <animations/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="150" id="LYS-0o-Zmu"/>
-                        <constraint firstAttribute="width" constant="150" id="QqC-ww-m15"/>
-                    </constraints>
-                </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Go workout so you have some awesome stats to be proud of!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jjv-5q-dlS">
-                    <rect key="frame" x="40" y="383" width="520" height="93"/>
-                    <animations/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="93" id="ae4-Om-lGg"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                </stackView>
             </subviews>
             <animations/>
             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="YpH-C0-Vnm" firstAttribute="centerY" secondItem="WJg-QI-Y5D" secondAttribute="centerY" id="20w-oR-5is"/>
-                <constraint firstItem="YpH-C0-Vnm" firstAttribute="centerX" secondItem="WJg-QI-Y5D" secondAttribute="centerX" id="3LW-Cz-HkQ"/>
-                <constraint firstItem="Jjv-5q-dlS" firstAttribute="centerX" secondItem="YpH-C0-Vnm" secondAttribute="centerX" constant="0.5" id="IhH-yo-TfI"/>
-                <constraint firstItem="Jjv-5q-dlS" firstAttribute="leading" secondItem="WJg-QI-Y5D" secondAttribute="leading" constant="40" id="ajS-bp-DES"/>
-                <constraint firstAttribute="trailing" secondItem="Jjv-5q-dlS" secondAttribute="trailing" constant="40" id="ewT-f7-73R"/>
-                <constraint firstItem="Jjv-5q-dlS" firstAttribute="top" secondItem="YpH-C0-Vnm" secondAttribute="bottom" constant="8" id="yr7-Cc-ykZ"/>
+                <constraint firstItem="YLf-AF-Vvc" firstAttribute="centerX" secondItem="WJg-QI-Y5D" secondAttribute="centerX" id="8bF-xw-Fhp"/>
+                <constraint firstAttribute="trailing" secondItem="YLf-AF-Vvc" secondAttribute="trailing" constant="25" id="AbN-xP-Ewq"/>
+                <constraint firstItem="YLf-AF-Vvc" firstAttribute="centerY" secondItem="WJg-QI-Y5D" secondAttribute="centerY" id="HRS-C0-ofa"/>
+                <constraint firstItem="YLf-AF-Vvc" firstAttribute="leading" secondItem="WJg-QI-Y5D" secondAttribute="leading" constant="25" id="Lw4-h1-2UP"/>
             </constraints>
             <point key="canvasLocation" x="465" y="446"/>
         </view>

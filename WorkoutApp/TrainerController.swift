@@ -35,6 +35,8 @@ class TrainerController: UIViewController, WCSessionDelegate
   override func viewDidLoad()
   {
     view.backgroundColor = PRIMARY_COLOR
+    self.navigationItem.leftBarButtonItem = UIBarButtonItem(image:BACK_IMG, style:.Plain, target:self, action:"backButtonPressed:")
+    
     movementField.bounds.size.height = 60
     trainDataButton.enabled = false
     if (WCSession.defaultSession().reachable)
@@ -43,6 +45,13 @@ class TrainerController: UIViewController, WCSessionDelegate
     } else {
       infoLabel.text = "NOT REACHABLE"
     }
+  }
+  
+  /****************************************************************************
+   *
+   *****************************************************************************/
+  func backButtonPressed(sender:UIButton) {
+    navigationController?.popViewControllerAnimated(true)
   }
   
   /**************************************************************************

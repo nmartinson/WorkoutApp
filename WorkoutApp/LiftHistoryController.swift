@@ -33,7 +33,7 @@ class LiftHistoryController: UIViewController, ChartViewDelegate
         chart.drawBarShadowEnabled = false
         chart.drawGridBackgroundEnabled = false
         chart.backgroundColor = PRIMARY_COLOR
-		chart.xAxis.labelTextColor = UIColor.whiteColor()
+				chart.xAxis.labelTextColor = UIColor.whiteColor()
         chart.leftAxis.labelTextColor = UIColor.whiteColor()
         chart.descriptionText = ""
         let xAxis = chart.xAxis
